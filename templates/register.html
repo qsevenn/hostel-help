@@ -1,9 +1,11 @@
-<h3>Register here</h3>
-<hr>
 
-<form action="" method="POST">
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block content %}
+   <form action="" method="POST">
     {% csrf_token %}
-
     {% for field in form %}
         <div>
             <p>{{ field.label }}: <br> {{ field }}</p>
@@ -15,3 +17,4 @@
     {% endfor %}
     <button type="submit">Register</button>
 </form>
+{% endblock %}
