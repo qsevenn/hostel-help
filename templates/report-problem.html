@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <header></header>
+{% extends "index.html" %}
 
-    <main></main>
+{% load static %}
 
-    <footer></footer>
-</body>
-</html>
+{% block content %}
+   <form action="{% url 'profile' %}" method="POST">
+        {% csrf_token %}
+        Проблема: <input type="text" name="title" class="" placeholder="Проблема..."/><br>
+        Тип проблеми: <select name="problem_type" class="">
+            <option value="Сантехнік">Сантехнік</option>
+            <option value="Столяр">Столяр</option>
+            <option value="Електрик">Електрик</option>
+            <option value="Не визначено" selected="selected">Не визначено</option>
+        </select><br>
+        <textarea name="description" maxlength="300" placeholder="Введіть короткий опис проблеми"></textarea><br>
+        <input type="submit" value="Надіслати" class=""/>
+    </form>
+{% endblock %}
