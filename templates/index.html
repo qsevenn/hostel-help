@@ -19,7 +19,7 @@
         {% if user.is_authenticated %}
             <div class="alert alert-success" role="alert">
                 <h3>Welcome {{ user.username }}!</h3>
-                <a href="{% url 'logout' %}">Logout?</a>
+                <a href="{% url 'logout' %}?next=../">Logout?</a>
             </div>
         {% else %}
             <div class="alert alert-success" role="alert">
