@@ -4,18 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="./static/style.css">
 </head>
 <body>
-    <header></header>
     <header>
+        <p class="site-title">HOSTEL HELP KPI</p>
         <nav>
 
-    <main></main>
         </nav>
     </header>
 
     <main>
         {% block content %}
+        <h1>Вирішення побутових проблем жителів студміста КПІ</h1>
+
+        <figure class="instruction">
+            <figcaption>Повідом адміністрацію про наявну проблему за три кроки:</figcaption>
+            <ol>
+                <li>Авторизуйся</li>
+                <li>Обери тип проблеми</li>
+                <li>Заповни заявку</li>
+            </ol>
+        </figure>
+        <div>
+
+        </div>
+
+        <a href="#">Вхід</a>
+        <p>Вперше тут?
+            <a href="#">Реєстрація</a>
+        </p>
         {% if user.is_authenticated %}
             <div class="alert alert-success" role="alert">
                 <h3>Welcome {{ user.username }}!</h3>
@@ -30,5 +48,9 @@
         {% endblock %}
     </main>
 
-    <footer></footer>
+    <footer>
+        <a href="#">Telegram</a>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+    </footer>
 </body>
