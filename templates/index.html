@@ -4,14 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./static/style.css">
+    <script src="https://kit.fontawesome.com/72cdf14cdd.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <p class="site-title">HOSTEL HELP KPI</p>
-        <nav>
-
-        </nav>
+        <div class="navigation">
+            <button id="menu-button" onclick="openMenu()" title="Меню сайту"></button>
+            <nav id="menu">
+                <a href="index.html" class="active" aria-current="page">Головна</a>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -27,13 +35,11 @@
             </ol>
         </figure>
         <div>
-
+            <a href="#" class="enter-button">Вхід</a>
+            <p>Вперше тут?
+                <a href="#">Реєстрація</a>
+            </p>
         </div>
-
-        <a href="#">Вхід</a>
-        <p>Вперше тут?
-            <a href="#">Реєстрація</a>
-        </p>
         {% if user.is_authenticated %}
             <div class="alert alert-success" role="alert">
                 <h3>Welcome {{ user.username }}!</h3>
@@ -49,8 +55,11 @@
     </main>
 
     <footer>
-        <a href="#">Telegram</a>
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
+        <a href="#" target="_blank" class="fa-brands fa-telegram"><span
+                class="fa-sr-only">Telegram</span></a>
+        <a href="#" target="_blank" class="fa-brands fa-instagram"><span
+                class="fa-sr-only">Instagram</span></a>
+        <a href="#" target="_blank" class="fa-brands fa-facebook"><span
+                class="fa-sr-only">Facebook</span></a>
     </footer>
 </body>
