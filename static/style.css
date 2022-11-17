@@ -58,7 +58,7 @@ header, nav, .instruction, #enter-button {
 }
 
 #menu-button::before {
-    font-family: "Fontawesome";
+    font-family: "Fontawesome", sans-serif;
     content: "\f0c9";
 }
 
