@@ -3,5 +3,9 @@
 {% load static %}
 
 {% block content %}
-   <!-- content -->
+   {% if user.is_superuser %}
+      <p>Hello SUPERuser</p>
+   {% else %}
+      <p>Hello user</p>
+   {% endif %}
 {% endblock %}

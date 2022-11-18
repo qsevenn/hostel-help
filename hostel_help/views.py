@@ -27,11 +27,16 @@ def register(request):
 
 
 def login(request):
+    # print(request.user.is_authenticated)
+    # if request.user.is_authenticated:
+    #     return render(request, 'profile.html', {'user': request.user})
+    # else:
     return render(request, 'login.html')
 
 
+
 def profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'profile.html', {'user': request.user})
 
 
 def report(request):

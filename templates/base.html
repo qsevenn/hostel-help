@@ -1,5 +1,6 @@
-{% load static %}
+
 <!DOCTYPE html>
+{% load static %}
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
@@ -9,8 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    # проблема була в тому шо ти не правильно підімкнув css 
-    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/72cdf14cdd.js" crossorigin="anonymous"></script>
     <script>
         function openMenu() {
