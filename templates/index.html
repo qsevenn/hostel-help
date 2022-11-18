@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-<h1>Вирішення побутових проблем жителів студміста КПІ</h1>
+<h1 class="main-h1">Вирішення побутових проблем жителів студміста КПІ</h1>
 
 <figure class="instruction">
     <figcaption>Повідом адміністрацію про наявну проблему за три кроки:</figcaption>
@@ -13,12 +13,7 @@
         <li>Заповни заявку</li>
     </ol>
 </figure>
-<div class="authorisation">
-    <a href="#" id="enter-button">Вхід</a>
-    <p>Вперше тут?
-        <a href="#">Реєстрація</a>
-    </p>
-</div>
+
 {% if user.is_authenticated %}
     <div class="alert alert-success" role="alert">
         <h3>Welcome {{ user.username }}!</h3>
@@ -26,8 +21,14 @@
     </div>
 {% else %}
     <div class="alert alert-success" role="alert">
-        <h3>Welcome, unverified aboba.</h3>
-        <a href="{% url 'login' %}">Login?</a>
+        <a href="{% url 'login' %}" class="enter-button">Вхід</a>
+        <p>Вперше тут?
+            <a href="{% url 'register' %}">Реєстрація</a>
+        </p>
     </div>
+<!--    <div class="alert alert-success" role="alert">-->
+<!--        <h3>Welcome, unverified aboba.</h3>-->
+<!--        <a href="{% url 'login' %}">Login?</a>-->
+<!--    </div>-->
 {% endif %}
 {% endblock %}

@@ -15,6 +15,9 @@ body {
 
 a {
     color: #000000;
+}
+
+footer a, nav a, .enter-button {
     text-decoration: none;
 }
 
@@ -22,7 +25,7 @@ header, footer {
     background: #000000;
     color: #ffffff;
     height: 4rem;
-    width: 100%;
+    width: 100vw;
     display: flex;
     align-items: center;
 }
@@ -34,14 +37,13 @@ header {
     padding: 0 1.2rem;
 }
 
-header, nav, .instruction, #enter-button {
+header, nav, .instruction, .enter-button {
     box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px, rgba(0, 0, 0, 0.23) 0 6px 6px;
 }
 
 .site-title {
-    display: inline-block;
     color: #ffffff;
-    font-size: 140%;
+    font-size: 160%;
     font-weight: bold;
 }
 
@@ -54,7 +56,6 @@ header, nav, .instruction, #enter-button {
     border-radius: 10px;
     height: 2.5rem;
     width: 2.5rem;
-    cursor: pointer;
 }
 
 #menu-button::before {
@@ -105,16 +106,19 @@ main > * {
 }
 
 h1 {
-    font-size: 120%;
-    display: inline-block;
     color: #ffffff;
+    display: inline-block;
+}
+
+.main-h1 {
+    font-size: 120%;
 }
 
 .instruction {
     background: rgba(255, 255, 255, 0.82);
     border-radius: 35px;
     padding: 2rem 1rem;
-    font-size: 80%;
+    font-size: 95%;
 }
 
 .instruction ol {
@@ -127,25 +131,58 @@ h1 {
     font-weight: bold;
 }
 
-#enter-button {
+button {
+    cursor: pointer;
+}
+
+form {
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    font-size: 130%;
+    width: 80%;
+    max-width: 35rem;
+    margin: 0 auto;
+}
+
+input, textarea, select {
+    border-radius: 0.5rem;
+    background: #ffffff;
+}
+
+input, textarea, select, .enter-button {
+    font-family: "Yanone Kaffeesatz", sans-serif;
     display: inline-block;
+    border: none;
+}
+
+input, select {
+    width: 12rem;
+    height: 2.5rem;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.enter-button {
     width: 10rem;
     height: 4rem;
     line-height: 4rem;
-    font-size: 130%;
-    text-decoration: none;
+    font-size: 100%;
     border-radius: 2.5rem;
     color: #ffffff;
     background: #000000;
 }
 
-.authorisation a {
-    text-decoration: underline;
+a.enter-button {
+    font-size: 125%
 }
-
-/*.enter-button:hover, .enter-button:active {*/
-/*    background: #000000;*/
-/*}*/
 
 footer {
     flex-shrink: 0;
