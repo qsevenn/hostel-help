@@ -1,80 +1,33 @@
+{% extends "base.html" %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="./static/style.css">
-    <script src="https://kit.fontawesome.com/72cdf14cdd.js" crossorigin="anonymous"></script>
-    <script>
-        function openMenu() {
-            document.getElementById("menu").classList.toggle("show");
-        }
 
-        window.onclick = function (event) {
-            if (!event.target.matches('#menu-button')) {
-                var dropdown = document.getElementById("menu");
-                if (dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show');
-                }
-            }
-        }
-    </script>
-</head>
-<body>
-    <header>
-        <p class="site-title">HOSTEL HELP KPI</p>
-        <div class="navigation">
-            <button id="menu-button" onclick="openMenu()" title="Меню сайту"></button>
-            <nav id="menu">
-                <a href="index.html" class="active" aria-current="page">Головна</a>
-            </nav>
-        </div>
-    </header>
+{% block content %}
+<h1>Вирішення побутових проблем жителів студміста КПІ</h1>
 
-    <main>
-        {% block content %}
-        <h1>Вирішення побутових проблем жителів студміста КПІ</h1>
-
-        <figure class="instruction">
-            <figcaption>Повідом адміністрацію про наявну проблему за три кроки:</figcaption>
-            <ol>
-                <li>Авторизуйся</li>
-                <li>Обери тип проблеми</li>
-                <li>Заповни заявку</li>
-            </ol>
-        </figure>
-        <div class="authorisation">
-            <a href="#" id="enter-button">Вхід</a>
-            <p>Вперше тут?
-                <a href="#">Реєстрація</a>
-            </p>
-        </div>
-        {% if user.is_authenticated %}
-            <div class="alert alert-success" role="alert">
-                <h3>Welcome {{ user.username }}!</h3>
-                <a href="{% url 'logout' %}?next=../">Logout?</a>
-            </div>
-        {% else %}
-            <div class="alert alert-success" role="alert">
-                <h3>Welcome, unverified aboba.</h3>
-                <a href="{% url 'login' %}">Login?</a>
-            </div>
-        {% endif %}
-        {% endblock %}
-    </main>
-
-    <footer>
-        <a href="#" target="_blank" class="fa-brands fa-telegram"><span
-                class="fa-sr-only">Telegram</span></a>
-        <a href="#" target="_blank" class="fa-brands fa-instagram"><span
-                class="fa-sr-only">Instagram</span></a>
-        <a href="#" target="_blank" class="fa-brands fa-facebook"><span
-                class="fa-sr-only">Facebook</span></a>
-    </footer>
-</body>
+<figure class="instruction">
+    <figcaption>Повідом адміністрацію про наявну проблему за три кроки:</figcaption>
+    <ol>
+        <li>Авторизуйся</li>
+        <li>Обери тип проблеми</li>
+        <li>Заповни заявку</li>
+    </ol>
+</figure>
+<div class="authorisation">
+    <a href="#" id="enter-button">Вхід</a>
+    <p>Вперше тут?
+        <a href="#">Реєстрація</a>
+    </p>
+</div>
+{% if user.is_authenticated %}
+    <div class="alert alert-success" role="alert">
+        <h3>Welcome {{ user.username }}!</h3>
+        <a href="{% url 'logout' %}?next=../">Logout?</a>
+    </div>
+{% else %}
+    <div class="alert alert-success" role="alert">
+        <h3>Welcome, unverified aboba.</h3>
+        <a href="{% url 'login' %}">Login?</a>
+    </div>
+{% endif %}
+{% endblock %}

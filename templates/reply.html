@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+   <form action="{% url 'profile' %}" method="POST">
+        {% csrf_token %}
+        Кому: <input type="text" name="to" class="" placeholder="Email"/><br>
+        <textarea name="message" maxlength="500" placeholder="Введіть відповідь на повідомлення користувача"></textarea><br>
+        <input type="submit" value="Надіслати" class=""/>
+    </form>
+{% endblock %}

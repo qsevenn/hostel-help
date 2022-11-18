@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import UserRegistrationForm
-from .models import Report
+from .forms import UserRegistrationForm, ReportForm
+# from .models import Report, Contact
 
 
 def index(request):
@@ -31,16 +31,24 @@ def login(request):
 
 
 def profile(request):
-    if request.method == "POST":
-        if request.POST.get('title') and request.POST.get('problem_type') and request.POST.get('description'):
-            new_report = Report()
-            new_report.title = request.POST.get('title')
-            new_report.problem_type = request.POST.get('problem_type')
-            new_report.description = request.POST.get('description')
-            new_report.save()
-            return render(request, 'profile.html')
-    return render(request, 'report-problem.html')
+    return render(request, 'profile.html')
 
 
 def report(request):
-    return render(request, 'report-problem.html')
+    if request.method == "POST":
+        form = ReportForm(request.POST, initial={'email': request.user.email})
+        if form.is_valid():
+            instance = form.save(commit=False)
+            email = request.user.email
+            instance.email = email
+            instance.save()
+            messages.success(request, f'Your report has been accepted.')
+            return redirect('profile')
+    else:
+        form = ReportForm()
+
+    context = {'form': form}
+    return render(request, 'report-problem.html', context)
+
+def reply(request):
+    return render(request, 'reply.html')
