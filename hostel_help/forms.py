@@ -14,6 +14,7 @@ class UserRegistrationForm(UserCreationForm):
     password2 = forms.CharField(label='Підтвердження паролю', strip=False, widget=forms.PasswordInput)
     error_messages = {
         'password_mismatch': 'Паролі не співпадають.'
+
     }
     class Meta:
         model = User
