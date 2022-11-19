@@ -7,9 +7,11 @@ from .models import Contact, Report
 
 
 class UserRegistrationForm(UserCreationForm):
-    first_name = forms.CharField(max_length=101)
-    last_name = forms.CharField(max_length=101)
-    email = forms.EmailField(required=True)
+    first_name = forms.CharField(max_length=101, label='Ім\'я')
+    last_name = forms.CharField(max_length=101, label='Прізвище')
+    email = forms.EmailField(required=True, label='Електронна пошта')
+    password1 = forms.CharField(label='Пароль', strip=False, widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Підтвердження паролю', strip=False, widget=forms.PasswordInput)
     error_messages = {
         'password_mismatch': 'Паролі не співпадають.'
     }
@@ -45,8 +47,8 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class CustomAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(max_length=254, label='Ім\'я користувача: ')
-    password = forms.CharField(label='Пароль: ', widget=forms.PasswordInput)
+    username = forms.CharField(max_length=254, label='Ім\'я користувача')
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput)
 
     error_messages = {
         'invalid_login': 'Введіть коректне ім\'я користувача і пароль',
