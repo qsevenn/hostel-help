@@ -2,9 +2,13 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import UserRegistrationForm, ReportForm
+from django.contrib.auth.views import LoginView
+from .forms import UserRegistrationForm, ReportForm, CustomAuthenticationForm
 # from .models import Report, Contact
 
+
+class CustomLoginView(LoginView):
+    authentication_form = CustomAuthenticationForm
 
 def index(request):
     return render(request, 'index.html')

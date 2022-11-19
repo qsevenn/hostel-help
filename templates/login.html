@@ -12,6 +12,11 @@
             {% csrf_token %}
             {% for field in form %}
                 <p>{{ field.label }}: {{ field }}</p>
+
+                {% for error in field.errors %}
+                    <small style="color: red">{{ error }}</small><br>
+                {% endfor %}
+
             {% endfor %}
             <button type="submit" class="enter-button">Вхід</button>
         </form>

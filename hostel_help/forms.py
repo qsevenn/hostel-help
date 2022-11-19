@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
@@ -10,7 +10,9 @@ class UserRegistrationForm(UserCreationForm):
     first_name = forms.CharField(max_length=101)
     last_name = forms.CharField(max_length=101)
     email = forms.EmailField(required=True)
-
+    error_messages = {
+        'password_mismatch': 'Паролі не співпадають.'
+    }
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password1']
@@ -26,8 +28,8 @@ class UserRegistrationForm(UserCreationForm):
     def clean(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
-            self.add_error('email', "Email exists")
-            raise forms.ValidationError("Email exists")
+            self.add_error('email', "Електронна пошта занята.")
+            raise forms.ValidationError("Електронна пошта занята.")
 
         return self.cleaned_data
 
@@ -35,11 +37,21 @@ class UserRegistrationForm(UserCreationForm):
         data = self.cleaned_data['username']
         user_model = get_user_model()
         if user_model.objects.filter(username=data).exists():
-            raise ValidationError("Username already exists")
+            raise ValidationError("Ім'я користувача заняте.")
 
         # Always return a value to use as the new cleaned data, even if
         # this method didn't change it.
         return data
+
+
+class CustomAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(max_length=254, label='Ім\'я користувача: ')
+    password = forms.CharField(label='Пароль: ', widget=forms.PasswordInput)
+
+    error_messages = {
+        'invalid_login': 'Введіть коректне ім\'я користувача і пароль',
+        'inactive': 'Цей аккаунт неактивний.'
+    }
 
 
 class ReportForm(forms.ModelForm):
