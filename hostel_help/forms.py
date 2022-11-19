@@ -13,8 +13,15 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
-
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password1']
+        labels = {
+            'username': 'Псевдонім',
+            'first_name': 'Ім`я',
+            'last_name': 'Прізвище',
+            'email': 'Email',
+            'password1': 'Пароль',
+            'password2': 'Повторно пароль'
+        }
 
     def clean(self):
         email = self.cleaned_data.get('email')
@@ -48,27 +55,23 @@ class ReportForm(forms.ModelForm):
             'description': "Опис"
         }
 
-
     def __init__(self, *args, **kwargs):
         super(ReportForm, self).__init__(*args, **kwargs)
         self.fields['exact_place'].widget.attrs['placeholder'] = "Номер кімнати чи поверх"
         self.fields['description'].widget.attrs['placeholder'] = "Введіть короткий опис проблеми..."
-
 
     def clean(self):
         title = self.cleaned_data.get('title')
         problem_type = self.cleaned_data.get('problem_type')
         dormitory = self.cleaned_data.get('dormitory')
         exact_place = self.cleaned_data.get('exact_place')
-        description= self.cleaned_data.get('description')
+        description = self.cleaned_data.get('description')
         if not title or not problem_type or not dormitory or not exact_place or not description:
             raise forms.ValidationError("Ви повинні заповнити всі поля!")
         return self.cleaned_data
         
 
-
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
-        fields = ['email','message']
-
+        fields = ['email', 'message']
