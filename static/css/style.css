@@ -130,7 +130,7 @@ h1 {
 
 .list-decoration {
     margin: 0 auto;
-    max-width: 62%;
+    width: 75%;
 }
 
 .icons-block, .instruction ol {
