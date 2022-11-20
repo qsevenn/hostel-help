@@ -1,30 +1,5 @@
 from django.db import models
 
-# Create your models here.
-class Report(models.Model):
-    PROBLEM_CHOICES = (("Електрик", "Електрик"),
-                       ("Столяр", "Столяр"),
-                       ("Сантехнік", "Сантехнік"),
-                       ("Не визначено", "Не визначено"))
-    DORMITORIES_CHOICES = ((1, "1 гуртожиток"),
-                           (4, "4 гуртожиток"))
-
-    email = models.EmailField(max_length=80, default=False)
-    title = models.CharField(max_length=70)
-    # problem_type =  models.CharField(max_length=70)
-    problem_type = models.CharField(choices=PROBLEM_CHOICES, max_length=70, default="Не визначено")
-    # dormitory = models.CharField(max_length=30)
-    dormitory = models.IntegerField(choices=DORMITORIES_CHOICES)
-    exact_place = models.CharField(max_length=100)
-    description = models.TextField()
-    date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.title} {self.date}"
-
-class Contact(models.Model):
-    from django.db import models
-
 
 # Create your models here.
 class Report(models.Model):
