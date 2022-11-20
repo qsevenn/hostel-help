@@ -8,7 +8,7 @@ from .models import Report, Contact
 from django.core.mail import send_mail
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from verify_email.email_handler import send_verification_email
 
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthenticationForm
@@ -22,7 +22,7 @@ def register(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
 
-            form.save()
+            inactive_user = send_verification_email(request, form)
 
             messages.success(request, f'Your account has been created. You can log in now!')
             return redirect('login')
