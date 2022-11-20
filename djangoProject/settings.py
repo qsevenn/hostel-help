@@ -133,6 +133,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '../'
 
 # datetime formatting
-DATETIME_FORMAT="%Y-%m-%d %H:%M:%S"
-L10N=False
-USE_TZ=False
+USE_L10N = False
+DATETIME_FORMAT = 'd.m.Y - H:i'
+USE_TZ = True
+USE_I18N = True
+TIME_ZONE = 'Europe/Kyiv'
+# LANGUAGE_CODE = 'us_en'
+
+#  email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "hostelhelpkpi@gmail.com"
+EMAIL_HOST_PASSWORD = "qeldcudojffxesub"

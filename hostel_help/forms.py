@@ -89,4 +89,12 @@ class ReportForm(forms.ModelForm):
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
-        fields = ['email', 'message']
+        fields = ['message']
+        labels = {'message': "Введіть своє повідомлення"}
+        # ordering = ['date']
+
+    def clean(self):
+        message = self.cleaned_data.get('message')
+        if not message:
+            raise forms.ValidationError("Ви повинні заповнити всі поля!")
+        return self.cleaned_data
