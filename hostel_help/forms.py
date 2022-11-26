@@ -3,7 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
-from validate_email_address import validate_email
+# from validate_email_address import validate_email
+from django.core.validators import validate_email
 from .models import Contact, Report
 
 
@@ -34,9 +35,10 @@ class UserRegistrationForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             self.add_error('email', "Електронна пошта занята.")
             raise forms.ValidationError("Електронна пошта занята.")
-        if not validate_email(email, verify=True):
-            self.add_error('email', 'Електронна пошта не існує')
-            raise forms.ValidationError('Електронна пошта не існує')
+        # if not validate_email(email, verify=True):
+        # if not validate_email(email):
+        #     self.add_error('email', 'Електронна пошта не існує')
+        #     raise forms.ValidationError('Електронна пошта не існує')
         return self.cleaned_data
 
     def clean_username(self):
