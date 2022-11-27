@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-    {% if user.is_autheticated %}
+    {% if user.is_authenticated %}
         <h2>Ви вже зареєстровані, {{ user.username }}</h2>
     {% else %}
         <h1>Вхід</h1>
