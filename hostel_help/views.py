@@ -18,6 +18,7 @@ from .token.token import account_activation_token
 
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthenticationForm
+    extra_context = {'custom_login_error': 'Неправильно введені дані для логіну'}
 
 def index(request):
     return render(request, 'index.html')

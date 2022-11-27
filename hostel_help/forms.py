@@ -58,8 +58,19 @@ class CustomAuthenticationForm(AuthenticationForm):
 
     error_messages = {
         'invalid_login': 'Введіть коректне ім\'я користувача і пароль',
-        'inactive': 'Цей аккаунт неактивний.'
+        'inactive': 'Цей аккаунт неактивний.',
+        'invalid_password': 'Невірно введений пароль'
     }
+
+    # def clean_username(self):
+    #     data = self.cleaned_data['username']
+    #     user_model = get_user_model()
+    #     if not user_model.objects.filter(username=data).exists():
+    #         raise ValidationError("Невірно введене ім'я користувача.")
+    #
+    #     # Always return a value to use as the new cleaned data, even if
+    #     # this method didn't change it.
+    #     return data
 
 
 class ReportForm(forms.ModelForm):
