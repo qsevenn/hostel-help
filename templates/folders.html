@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h2>Оберіть гуртожиток, щоб переглянути повідомлення від жителів студмістечка</h2>
+    {% for dormitory in dormitories %}
+        <div class="">
+            <h3>{{dormitory}} гуртожиток</h3>
+            <!-- <button onclick="">Переглянути</button> -->
+            <a href="{% url 'profile' dormitory %}">Переглянути</a>
+        </div>
+    {% endfor %}
+{% endblock %}
