@@ -12,6 +12,7 @@ from verify_email.email_handler import send_verification_email
 
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthenticationForm
+    extra_context = {'custom_login_error': 'Неправильно введені дані для логіну'}
 
 def index(request):
     return render(request, 'index.html')

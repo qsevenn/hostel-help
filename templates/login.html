@@ -18,6 +18,9 @@
                 {% endfor %}
 
             {% endfor %}
+            {% if request.META.HTTP_REFERER == 'http://127.0.0.1:8000/login/'%}
+                    <small style="color: red">{{ custom_login_error }}</small><br>
+            {% endif %}
             <button type="submit" class="enter-button">Вхід</button>
         </form>
         <p>Вперше тут?
