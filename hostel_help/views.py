@@ -8,7 +8,7 @@ from .models import Report, Contact
 from django.core.mail import send_mail, EmailMessage
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from verify_email.email_handler import send_verification_email
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode  
@@ -49,6 +49,7 @@ def register(request):
             )  
             email.send()  
             return HttpResponse('Please confirm your email address to complete the registration')  
+
 
             # messages.success(request, f'Your account has been created. You can log in now!')
             # return redirect('login')
