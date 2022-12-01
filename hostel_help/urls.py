@@ -12,9 +12,10 @@ urlpatterns = [
     path('profile/<int:dormitory>/', views.profile, name='profile'),
     path('folders/', views.folders, name='folders'),
 
-
+    path('delete/<int:dormitory>/<int:report_id>/', views.delete_report, name='delete_report'),
     path('report/', views.report, name='report'),
     path('reply/', views.reply, name='reply'),
     path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',  
         views.activate, name='activate'),  
 ]
+

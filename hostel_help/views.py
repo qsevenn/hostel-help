@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
@@ -136,7 +136,7 @@ def profile(request, dormitory=None):
             except EmptyPage:
                 reports = paginator.page(paginator.num_pages)
             form = ContactForm()
-            return render(request, 'profile.html', {'user': request.user,'form': form, 'reports': reports, 'replies': replies})
+            return render(request, 'profile.html', {'user': request.user,'form': form, 'reports': reports, 'replies': replies, 'dormitory': dormitory})
         if request.user.is_authenticated:
             reports = Report.objects.filter(email=request.user.email).order_by('-date')
             page = request.GET.get('page', 1)
@@ -224,6 +224,14 @@ def report(request):
         return render(request, 'report-problem.html', context)
     else:
         return HttpResponseBadRequest("Для повідомлення про проблему необхідно авторизуватись")
+
+
+def delete_report(request, report_id, dormitory):
+    # print(report_id)
+    report_to_delete=Report.objects.get(id=report_id)
+    report_to_delete.delete()
+    return HttpResponseRedirect(reverse('profile', args=[dormitory]))
+
 
 def reply(request):
     return render(request, 'reply.html')
