@@ -233,5 +233,15 @@ def delete_report(request, report_id, dormitory):
     return HttpResponseRedirect(reverse('profile', args=[dormitory]))
 
 
+def change_status(request, report_id, dormitory):
+    report_to_change = Report.objects.get(id=report_id)
+    if report_to_change.status == "Неактивна":
+        report_to_change.status = "Активна"
+    elif report_to_change.status == "Активна":
+        report_to_change.status = "Закрита"
+    report_to_change.save()
+    return HttpResponseRedirect(reverse('profile', args=[dormitory]))
+
+
 def reply(request):
     return render(request, 'reply.html')

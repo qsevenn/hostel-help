@@ -24,7 +24,15 @@
                   <h6>{{ report.dormitory }}</h6>
                   <p>{{ report.exact_place }}</p>
                   <p>{{ report.description }}</p>
-                  <button onclick="">Прийняти</button><button onclick="">Відповісти</button>
+                  <form action="{% url 'change_status' dormitory report.id %}" method="POST">
+                     {% csrf_token %}
+                     {% if report.status == "Неактивна" %}
+                        <button type="submit">Прийняти</button>
+                     {% elif report.status == "Активна" %}
+                        <button type="submit" onclick="return confirm('Ви впевнені, що бажаєте закрити запис?')">Закрити</button>
+                        <button onclick="">Відповісти</button>
+                     {% endif %}
+                  </form>
                </div>
                <!-- це має з'являтись після нажаття на кнопку відповісти -->
                <form action="" method="POST" class="report-answer">
