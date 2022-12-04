@@ -10,3 +10,11 @@ window.onclick = function (event) {
         }
     }
 }
+
+function showAnswerPopup() {
+  document.getElementById("report-answer").style.display = "block";
+}
+
+function hideAnswerPopup() {
+  document.getElementById("report-answer").style.display = "none";
+}
