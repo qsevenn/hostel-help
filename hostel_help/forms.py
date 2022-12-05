@@ -3,8 +3,6 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, Pass
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
-# from validate_email_address import validate_email
-from django.core.validators import validate_email
 from .models import Contact, Report
 
 
