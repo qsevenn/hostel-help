@@ -22,7 +22,6 @@ urlpatterns = [
     path('report/', views.report, name='report'),
     path('change_status/<int:dormitory>/<int:report_id>/', views.change_status, name='change_status'),
     path('reply/', views.reply, name='reply'),
-    path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',  
-        views.activate, name='activate'),  
+    path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
+         views.activate, name='activate'),
 ]
-

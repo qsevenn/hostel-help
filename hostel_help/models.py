@@ -24,6 +24,7 @@ class Report(models.Model):
     def __str__(self):
         return f"{self.title} {self.date}"
 
+
 class Contact(models.Model):
     # name = models.CharField(max_length=250)
     report_id = models.ForeignKey(Report, on_delete=models.CASCADE, related_name="contact_emails")
