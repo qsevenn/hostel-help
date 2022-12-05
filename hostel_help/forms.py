@@ -35,10 +35,7 @@ class UserRegistrationForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             self.add_error('email', "Електронна пошта занята.")
             raise forms.ValidationError("Електронна пошта занята.")
-        # if not validate_email(email, verify=True):
-        # if not validate_email(email):
-        #     self.add_error('email', 'Електронна пошта не існує')
-        #     raise forms.ValidationError('Електронна пошта не існує')
+
         return self.cleaned_data
 
     def clean_username(self):
