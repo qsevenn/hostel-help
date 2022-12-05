@@ -5,7 +5,8 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
-from .forms import UserRegistrationForm, ReportForm, CustomAuthenticationForm, ContactForm, PasswordResetForm, SetPasswordResetForm
+from .forms import UserRegistrationForm, ReportForm, CustomAuthenticationForm, ContactForm,\
+    PasswordResetForm, SetPasswordResetForm
 from .models import Report, Contact
 from django.core.mail import send_mail, EmailMessage
 from django.conf import settings
@@ -42,8 +43,8 @@ def register(request):
             message = render_to_string('acc_active_email.html', {  
                 'user': user,  
                 'domain': current_site.domain,  
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)),  
-                'token':account_activation_token.make_token(user),  
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
             })  
 
             to_email = form.cleaned_data.get('email')  
@@ -77,20 +78,20 @@ def reset_password(request):
                     subject = "HOSTELHELP Скидання паролю"
                     email_template_name = "password_reset_email.html"
                     current_site = get_current_site(request) 
-                    c = {
+                    email_message = {
                         'user': user,  
                         'domain': current_site.domain,  
-                        'uid':urlsafe_base64_encode(force_bytes(user.pk)),  
-                        'token':password_reset_token.make_token(user),  
+                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                        'token': password_reset_token.make_token(user),
                     }
                     email = EmailMessage(  
-                        subject, render_to_string(email_template_name, c), to=[user.email]  
+                        subject, render_to_string(email_template_name, email_message), to=[user.email]
                     )  
                     email.send()  
                     user.is_active = False
                     return redirect("index")
     password_reset_form = PasswordResetForm()
-    return render(request, "password_reset.html", context={"password_reset_form":password_reset_form})
+    return render(request, "password_reset.html", context={"password_reset_form": password_reset_form})
 
 
 def reset_password_confirm(request, uidb64, token):
@@ -206,7 +207,7 @@ def profile(request, dormitory=None):
                 subject = 'HOSTEL HELP KPI'
                 message = instance.message
                 email_from = settings.EMAIL_HOST_USER
-                recipient_list = [instance.email,]
+                recipient_list = [instance.email, ]
                 send_mail(subject, message, email_from, recipient_list, fail_silently=False)
                 messages.success(request, f'Your message has been sent.')
                 return redirect(reverse('profile', args=[dormitory]))
@@ -227,7 +228,11 @@ def profile(request, dormitory=None):
             except EmptyPage:
                 reports = paginator.page(paginator.num_pages)
             form = ContactForm()
-            return render(request, 'profile.html', {'user': request.user,'form': form, 'reports': reports, 'replies': replies, 'dormitory': dormitory})
+            return render(request, 'profile.html', {'user': request.user,
+                                                    'form': form,
+                                                    'reports': reports,
+                                                    'replies': replies,
+                                                    'dormitory': dormitory})
         if request.user.is_authenticated:
             reports = Report.objects.filter(email=request.user.email).order_by('-date')
             page = request.GET.get('page', 1)
@@ -240,7 +245,6 @@ def profile(request, dormitory=None):
                 reports = paginator.page(paginator.num_pages)
             replies = Contact.objects.filter(email=request.user.email)
             return render(request, 'profile.html', {'user': request.user, 'reports': reports, 'replies': replies})
-
 
 
 # def profile(request):
@@ -319,7 +323,7 @@ def report(request):
 
 def delete_report(request, report_id, dormitory):
     # print(report_id)
-    report_to_delete=Report.objects.get(id=report_id)
+    report_to_delete = Report.objects.get(id=report_id)
     report_to_delete.delete()
     return HttpResponseRedirect(reverse('profile', args=[dormitory]))
 

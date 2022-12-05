@@ -16,6 +16,7 @@ class UserRegistrationForm(UserCreationForm):
         'password_mismatch': 'Паролі не співпадають.'
 
     }
+
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password1']
@@ -75,6 +76,7 @@ class PasswordResetForm(PasswordResetForm):
     # error_messages = {
     #     'password_mismatch': 'Паролі не співпадають.'
     # }
+
     def clean(self):
         email = self.cleaned_data.get('email')
         if not User.objects.filter(email=email).exists():
@@ -83,30 +85,39 @@ class PasswordResetForm(PasswordResetForm):
 
 
 class SetPasswordResetForm(SetPasswordForm):
-    new_password1 = forms.CharField(label='Пароль',
-        # help_text="<ul class='errorlist text-muted'><li>Ваш пароль надто простий</li><li>Your password must contain at least 8 characters.</li><li>Your password can 't be a commonly used password.</li> <li>Your password can 't be entirely numeric.<li></ul>",
+    new_password1 = forms.CharField(
+        label='Пароль',
+        # help_text="<ul class='errorlist text-muted'>
+        # <li>Ваш пароль надто простий</li>
+        # <li>Your password must contain at least 8 characters.</li>
+        # <li>Your password can 't be a commonly used password.</li>
+        # <li>Your password can 't be entirely numeric.<li>
+        # </ul>",
         help_text=False,
         max_length=100,
         required=True,
         widget=forms.PasswordInput(
-        attrs={
-            'class': 'form-reset',
-            'placeholder': 'Введіть пароль',
-            'type': 'password',
-            'id': 'user_password',
-        }))
+            attrs={
+                'class': 'form-reset',
+                'placeholder': 'Введіть пароль',
+                'type': 'password',
+                'id': 'user_password',
+            }
+        ))
 
-    new_password2 = forms.CharField(label='Підтвердіть пароль',
+    new_password2 = forms.CharField(
+        label='Підтвердіть пароль',
         help_text=False,
         max_length=100,
         required=True,
         widget=forms.PasswordInput(
-        attrs={
-            'class': 'form-reset',
-            'placeholder': 'Введіть пароль ще раз',
-            'type': 'password',
-            'id': 'user_password',
-        }))
+            attrs={
+                'class': 'form-reset',
+                'placeholder': 'Введіть пароль ще раз',
+                'type': 'password',
+                'id': 'user_password',
+            }
+        ))
         
     error_messages = {
         'password_mismatch': 'Паролі не співпадають.'
