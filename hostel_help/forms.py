@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm, SetPasswordForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
@@ -71,6 +71,51 @@ class CustomAuthenticationForm(AuthenticationForm):
     #     # Always return a value to use as the new cleaned data, even if
     #     # this method didn't change it.
     #     return data
+
+
+class PasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(required=True, label='Електронна пошта')
+    # password = forms.CharField(label='Пароль', widget=forms.PasswordInput)
+    # password2 = forms.CharField(label='Підтвердження паролю', strip=False, widget=forms.PasswordInput)
+    # error_messages = {
+    #     'password_mismatch': 'Паролі не співпадають.'
+    # }
+    def clean(self):
+        email = self.cleaned_data.get('email')
+        if not User.objects.filter(email=email).exists():
+            self.add_error('email', "За даною електронною поштою не знайдено користувача.")
+            raise forms.ValidationError("За даною електронною поштою не знайдено користувача.")
+
+
+class SetPasswordResetForm(SetPasswordForm):
+    new_password1 = forms.CharField(label='Пароль',
+        # help_text="<ul class='errorlist text-muted'><li>Ваш пароль надто простий</li><li>Your password must contain at least 8 characters.</li><li>Your password can 't be a commonly used password.</li> <li>Your password can 't be entirely numeric.<li></ul>",
+        help_text=False,
+        max_length=100,
+        required=True,
+        widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-reset',
+            'placeholder': 'Введіть пароль',
+            'type': 'password',
+            'id': 'user_password',
+        }))
+
+    new_password2 = forms.CharField(label='Підтвердіть пароль',
+        help_text=False,
+        max_length=100,
+        required=True,
+        widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-reset',
+            'placeholder': 'Введіть пароль ще раз',
+            'type': 'password',
+            'id': 'user_password',
+        }))
+        
+    error_messages = {
+        'password_mismatch': 'Паролі не співпадають.'
+    }
 
 
 class ReportForm(forms.ModelForm):
