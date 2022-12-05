@@ -222,6 +222,14 @@ footer a {
     font-size: 125%;
 }
 
+/* для зручності */
+
+main div .report{
+    background-color: rgba(156, 228, 176, 0.9);
+}
+
+/* для зручності */
+
 /* @media screen and (min-width: 768px) {
 
 } */

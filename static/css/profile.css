@@ -1,0 +1,17 @@
+/* для зручності */
+div.report{
+    background-color: rgba(156, 228, 176, 0.9);
+}
+
+.report-content{
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#report-answer {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%, 5%);
+    z-index: 1000;
+}
