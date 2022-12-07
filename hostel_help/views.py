@@ -198,6 +198,7 @@ def profile(request, dormitory=None):
             if form.is_valid():
                 instance = form.save(commit=False)
                 report_id = int(request.POST.get('report_id'))
+                print(report_id)
                 if report_id:
                     report = Report.objects.get(id=report_id)
                     instance.report_id = report
@@ -302,7 +303,7 @@ def profile(request, dormitory=None):
 
 
 def report(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and not request.user.is_superuser and not request.user.is_staffuser:
         if request.method == "POST":
             form = ReportForm(request.POST, initial={'email': request.user.email})
             if form.is_valid():
@@ -318,7 +319,7 @@ def report(request):
         context = {'form': form}
         return render(request, 'report-problem.html', context)
     else:
-        return HttpResponseBadRequest("Для повідомлення про проблему необхідно авторизуватись")
+        return HttpResponseBadRequest("Сторінка не доступна")
 
 
 def delete_report(request, report_id, dormitory):

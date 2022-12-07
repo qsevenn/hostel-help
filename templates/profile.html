@@ -13,7 +13,7 @@
                <div class="report-content">
                   <p>{{ report.date }}   {{ report.status }} <a onclick="return confirm('Ви впевнені, що бажаєте видалити запис?')" href="{% url 'delete_report' dormitory report.id %}">X</a>
                      <a href="https://t.me/share/url?url=http://127.0.0.1:8000/&text={{ report.date }}%0A
-{{ report.email }}%0A{{ report.title }}%0AТип: {{ report.problem_type }}%0AГутожиток: {{ report.dormitory }}%0AКонкретне місце: {{report.exact_place }}%0A
+{{ report.email }}%0A{{ report.title }}%0AТип: {{ report.problem_type }}%0AГуртожиток: {{ report.dormitory }}%0AКонкретне місце: {{report.exact_place }}%0A
 Опис: {{ report.description }}" target="_blank">
                         Поширити в Telegram
                      </a>
@@ -31,13 +31,33 @@
                      {% elif report.status == "Активна" %}
                         <button type="submit" onclick="return confirm('Ви впевнені, що бажаєте закрити запис?')">Закрити</button>
                      {% endif %}
-                  </form>
+                  <!-- </form>
                   {% if report.status == "Активна" %}
-                     <button class="reply-button" onclick="showAnswerPopup()">Відповісти</button>
+                     <button class="reply-button" onclick="showAnswerPopup(report_id = '{{ report.id }}')">Відповісти {{ report.id }}</button>
+                     <form action="" method="POST" id="report-answer" name="rpt_id{{ report.id }}" value="{{ report.id }}" onsubmit="refreshToSameScroll()">
+                        <button type="button" class="cancel" onclick="hideAnswerPopup()">Х</button>
+                        {{ report.id }}
+                        {% csrf_token %}
+                        {% for field in form %}
+                           {{ field.label }}
+                           {{ field }}
+                        {% endfor %}
+                        <input type="hidden" name="report_id" value="{{ report.id }}">
+                        <input type="submit" value="Надіслати" onclick="hideAnswerPopup()"/>
+                     </form> -->
+                     <form action="" method="POST">
+                        {% csrf_token %}
+                        {% for field in form %}
+                           {{ field.label }}
+                           {{ field }}
+                        {% endfor %}
+                        <input type="hidden" name="report_id" value="{{ report.id }}">
+                        <input type="submit" value="Надіслати"/>
+                     </form>
                   {% endif %}
                </div>
                <!-- це має з'являтись після нажаття на кнопку відповісти -->
-               <form action="" method="POST" id="report-answer">
+               <!-- <form action="" method="POST" id="report-answer" onsubmit="refreshToSameScroll()">
                   <button type="button" class="cancel" onclick="hideAnswerPopup()">Х</button>
                   {% csrf_token %}
                   {% for field in form %}
@@ -46,7 +66,7 @@
                   {% endfor %}
                   <input type="hidden" name="report_id" value="{{ report.id }}">
                   <input type="submit" value="Надіслати" onclick="hideAnswerPopup()"/>
-               </form>
+               </form> -->
                <!-- це має з'являтись після нажаття на кнопку відповісти -->
 
                {% if report.contact_emails.all %}
