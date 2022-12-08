@@ -31,21 +31,10 @@
                      {% elif report.status == "Активна" %}
                         <button type="submit" onclick="return confirm('Ви впевнені, що бажаєте закрити запис?')">Закрити</button>
                      {% endif %}
-                  <!-- </form>
+                  </form>
                   {% if report.status == "Активна" %}
-                     <button class="reply-button" onclick="showAnswerPopup(report_id = '{{ report.id }}')">Відповісти {{ report.id }}</button>
-                     <form action="" method="POST" id="report-answer" name="rpt_id{{ report.id }}" value="{{ report.id }}" onsubmit="refreshToSameScroll()">
-                        <button type="button" class="cancel" onclick="hideAnswerPopup()">Х</button>
-                        {{ report.id }}
-                        {% csrf_token %}
-                        {% for field in form %}
-                           {{ field.label }}
-                           {{ field }}
-                        {% endfor %}
-                        <input type="hidden" name="report_id" value="{{ report.id }}">
-                        <input type="submit" value="Надіслати" onclick="hideAnswerPopup()"/>
-                     </form> -->
-                     <form action="" method="POST">
+                     <button class="reply-button" data-value="{{ report.id }}" onclick="showAnswerPopup(this)">Відповісти {{ report.id }}</button>
+                     <!-- <form action="" method="POST">
                         {% csrf_token %}
                         {% for field in form %}
                            {{ field.label }}
@@ -53,36 +42,37 @@
                         {% endfor %}
                         <input type="hidden" name="report_id" value="{{ report.id }}">
                         <input type="submit" value="Надіслати"/>
-                     </form>
+                     </form> -->
                   {% endif %}
                </div>
-               <!-- це має з'являтись після нажаття на кнопку відповісти -->
-               <!-- <form action="" method="POST" id="report-answer" onsubmit="refreshToSameScroll()">
-                  <button type="button" class="cancel" onclick="hideAnswerPopup()">Х</button>
-                  {% csrf_token %}
-                  {% for field in form %}
-                     {{ field.label }}
-                     {{ field }}
-                  {% endfor %}
-                  <input type="hidden" name="report_id" value="{{ report.id }}">
-                  <input type="submit" value="Надіслати" onclick="hideAnswerPopup()"/>
-               </form> -->
-               <!-- це має з'являтись після нажаття на кнопку відповісти -->
 
                {% if report.contact_emails.all %}
-                  <button>Показати відповіді</button>
+                  <button id="show-replies" onclick="showReplies()">Показати відповіді</button>
+                  <button id="hide-replies" onclick="hideReplies()">Сховати відповіді</button>
                {% endif %}
                <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
-               {% for reply in report.contact_emails.all %}
-                  <div class="reply">
-                     <p class="">{{ reply.date }}</p>
-                     <p>{{ reply.message }}</p>
-                  </div>
-               {% endfor %}
+               <div id="all-replies">
+                  {% for reply in report.contact_emails.all %}
+                     <div class="reply">
+                        <p class="">{{ reply.date }}</p>
+                        <p>{{ reply.message }}</p>
+                     </div>
+                  {% endfor %}
+               </div>
             <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
 
          </div>   
          {% endfor %}
+         <form action="" method="POST" id="report-answer" onsubmit="refreshToSameScroll()">
+            <button type="button" class="cancel" onclick="hideAnswerPopup()">Х</button>
+            {% csrf_token %}
+            {% for field in form %}
+               {{ field.label }}
+               {{ field }}
+            {% endfor %}
+            <input type="hidden" id="report_id" name="report_id" value="">
+            <input type="submit" value="Надіслати" onclick="hideAnswerPopup()"/>
+         </form>
       {% endif %}
 
    {% else %}

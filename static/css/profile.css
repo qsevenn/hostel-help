@@ -15,3 +15,17 @@ div.report{
     transform: translate(-50%, 5%);
     z-index: 1000;
 }
+
+/* #all-replies{
+    position: absolute;
+    visibility:hidden;
+    display:none;
+}
+
+#show-replies{
+    display: block;
+}
+
+#hide-replies{
+    display: none;
+} */

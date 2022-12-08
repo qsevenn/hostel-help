@@ -11,23 +11,24 @@ window.onclick = function (event) {
     }
 }
 
-function showAnswerPopup(report_id) {
-    document.getElementById("report-answer").style.display = "block";
-    // current_report = document.getElementById(report_id);
-    // form = current_report.getElementById("report_answer").style.display =
-    //   "block";
-    
-    // answer_forms = document.getElementsByName("rpt_id")
-    // answer_forms.forEach((form) => {
-    //   if (form.value == parseInt(report_id)) {
-    //     form.getElementById("report-answer").style.display = "block";
-    //     form
-    //       .getElementById("report-answer")
-    //       .getElementsByName("report_id")[0].value = parseInt(report_id);
-    //   }
-    // });
+function showAnswerPopup(obj) {
+    report_id = obj.getAttribute('data-value');
+    answer_form = document.getElementById('report-answer');
+    document.getElementById("report_id").setAttribute("value", report_id);
+    answer_form.style.display = "block";
 }
 
+function showReplies(){
+    document.getElementById("all-replies").style.display = "block";
+    document.getElementById("show-replies").style.display = "none";
+    document.getElementById("hide-replies").style.display = "block";
+}
+
+function hideReplies() {
+  document.getElementById("all-replies").style.display = "none";
+  document.getElementById("hide-replies").style.display = "none";
+  document.getElementById("show-replies").style.display = "block";
+}
 
 function hideAnswerPopup() {
     document.getElementById("report-answer").style.display = "none";
