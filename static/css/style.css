@@ -117,7 +117,7 @@ main > * {
     width: 88%;
     background: var(--main-block-bg);
     border-radius: 35px;
-    max-width: 28.125rem;
+    max-width: 32rem;
 }
 
 
@@ -261,18 +261,46 @@ main div .report{
     main > * {
         margin: 5% auto 0;
     }
-    h1, h2 {
-    max-width: 28.125rem;
-}
 }
 
 @media screen and (min-width: 1000px) {
+    h1, h2 {
+        height: calc(var(--main-height) + 50px);
+        max-width: 32rem;
+        font-size: 170%;
+        margin: 6% auto 2%;
+    }
+
+    h1 {
+        line-height: calc((var(--main-height) + 50px) / 2);
+    }
+
+    h2 {
+        line-height: calc(var(--main-height) + 50px);
+    }
+
+    .instruction {
+        margin-top: 0;
+    }
+
+
     .left, .right {
         display: inline-block;
         width: 50%;
+        margin-bottom: 0;
+    }
+
+    main {
+        padding-bottom: var(--main-height);
     }
 
     .left {
         float: left;
+    }
+
+    form {
+        font-size: 120%;
+        padding: 3% 6%;
+        margin: 0;
     }
 }
