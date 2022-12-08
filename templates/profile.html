@@ -47,11 +47,11 @@
                </div>
 
                {% if report.contact_emails.all %}
-                  <button id="show-replies" onclick="showReplies()">Показати відповіді</button>
-                  <button id="hide-replies" onclick="hideReplies()">Сховати відповіді</button>
+                  <button class="show-replies" data-value="{{ report.id }}" onclick="showReplies(this)">Показати відповіді</button>
+                  <button class="hide-replies" data-value="{{ report.id }}" onclick="hideReplies(this)">Сховати відповіді</button>
                {% endif %}
                <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
-               <div id="all-replies">
+               <div class="all-replies" data-value="{{ report.id }}">
                   {% for reply in report.contact_emails.all %}
                      <div class="reply">
                         <p class="">{{ reply.date }}</p>
@@ -88,15 +88,30 @@
          </div>
 
          {% if report.contact_emails.all %}
-            <button>Показати відповіді</button>
+            <button class="show-replies" data-value="{{ report.id }}" onclick="showReplies(this)">Показати відповіді</button>
+            <button class="hide-replies" data-value="{{ report.id }}" onclick="hideReplies(this)">Сховати відповіді</button>
          {% endif %}
          <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
-         {% for reply in report.contact_emails.all %}
+         <div class="all-replies" data-value="{{ report.id }}">
+            {% for reply in report.contact_emails.all %}
+               <div class="reply">
+                  <p class="">{{ reply.date }}</p>
+                  <p>{{ reply.message }}</p>
+               </div>
+            {% endfor %}
+         </div>
+         <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
+
+         <!-- {% if report.contact_emails.all %}
+            <button>Показати відповіді</button>
+         {% endif %} -->
+         <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
+         <!-- {% for reply in report.contact_emails.all %}
                <div class="">
                <p class="">{{ reply.date }}</p>
                <p>{{ reply.message }}</p>
             </div>
-         {% endfor %}
+         {% endfor %} -->
          <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
       {% endfor %}
    {% endif %} 

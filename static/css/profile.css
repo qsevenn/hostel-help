@@ -16,16 +16,14 @@ div.report{
     z-index: 1000;
 }
 
-/* #all-replies{
-    position: absolute;
-    visibility:hidden;
+.all-replies{
     display:none;
 }
 
-#show-replies{
+.show-replies{
     display: block;
 }
 
-#hide-replies{
+.hide-replies{
     display: none;
-} */
+}
