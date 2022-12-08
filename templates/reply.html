@@ -3,10 +3,13 @@
 {% load static %}
 
 {% block content %}
-   <form action="{% url 'profile' %}" method="POST">
+    <h2>Відповісти</h2>
+   <form action="{% url 'profile' %}" method="POST" class="main-block">
         {% csrf_token %}
-        Кому: <input type="text" name="to" class="" placeholder="Email"/><br>
-        <textarea name="message" maxlength="500" placeholder="Введіть відповідь на повідомлення користувача"></textarea><br>
+        <p>Кому: <input type="text" name="to" placeholder="Email"/></p>
+        <p>Повідомлення:
+            <textarea name="message" maxlength="500" placeholder="Введіть відповідь на повідомлення користувача"></textarea>
+        </p>
         <input type="submit" value="Надіслати" class="enter-button"/>
     </form>
 {% endblock %}

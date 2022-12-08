@@ -1,3 +1,4 @@
+/*general start*/
 html, body {
     height: 100%;
     margin: 0;
@@ -6,6 +7,16 @@ html, body {
 :root {
     --main-height: 3.5rem;
     --main-block-bg: rgba(255, 255, 255, 0.82);
+    --margin-or-padding: 8%;
+    --box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px, rgba(0, 0, 0, 0.23) 0 6px 6px;
+}
+
+small {
+    color: red;
+}
+
+button {
+    cursor: pointer;
 }
 
 * {
@@ -25,6 +36,8 @@ a {
 footer a, nav a, .enter-button {
     text-decoration: none;
 }
+/*general end*/
+
 
 header, footer {
     background: #000000;
@@ -41,10 +54,7 @@ header {
     top: 0;
     justify-content: space-between;
     padding: 0 5%;
-}
-
-header, nav, .main-block, .enter-button {
-    box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px, rgba(0, 0, 0, 0.23) 0 6px 6px;
+    box-shadow: var(--box-shadow);
 }
 
 .site-title {
@@ -52,9 +62,10 @@ header, nav, .main-block, .enter-button {
     padding-top: 0.25rem;
     margin: 0;
     font-weight: bold;
-    color: #FFF;
+    color: #ffffff;
 }
 
+/*menu button start*/
 #menu-button {
     vertical-align: middle;
     font-size: 130%;
@@ -74,6 +85,7 @@ header, nav, .main-block, .enter-button {
 #menu-button:hover, #menu-button:focus {
     background: #ffffff36;
 }
+/*menu button end*/
 
 .show {
     display: block;
@@ -88,6 +100,7 @@ nav {
     background-color: #ffffff;
     text-align: center;
     width: 100vw;
+    box-shadow: var(--box-shadow);
 }
 
 nav a {
@@ -103,13 +116,13 @@ nav a {
 main {
     font-size: 1.5rem;
     text-align: center;
-    padding: var(--main-height) 0 10%;
+    padding: var(--main-height) 0 var(--margin-or-padding);
     background: linear-gradient(#41B562, #9CE4B0);
     flex: 1 0 auto;
 }
 
-main > * {
-    margin: 10% auto 0;
+main > *, .left > *, .right > * {
+    margin: var(--margin-or-padding) auto 0;
     width: 88%;
 }
 
@@ -118,15 +131,18 @@ main > * {
     background: var(--main-block-bg);
     border-radius: 35px;
     max-width: 32rem;
+    box-shadow: var(--box-shadow);
 }
-
 
 h1, h2 {
+    font-size: 175%;
+    max-width: 32rem;
     color: #ffffff;
     display: inline-block;
+    border: solid;
 }
 
-.instruction {
+.instruction, form {
     padding: 2rem 1rem;
 }
 
@@ -142,7 +158,7 @@ h1, h2 {
 }
 
 .icons-block, .instruction ol {
-    margin: 8% 0 0;
+    margin: 0;
 }
 
 .icons-block {
@@ -155,16 +171,13 @@ h1, h2 {
     width: 90%;
 }
 
-
 .instruction ol li, .icons-block i {
-    margin-top: 30px;
+    margin-top: 35px;
     text-align: left;
     font-weight: bold;
 }
 
-button {
-    cursor: pointer;
-}
+
 
 .right {
     width: 100%;
@@ -188,7 +201,6 @@ form {
     text-align: start;
     font-size: 130%;
     padding: 6% 6%;
-    margin-top: 6%;
 }
 
 input, textarea, select {
@@ -204,6 +216,10 @@ input, textarea, select, .enter-button, optgroup {
     padding: 0.6rem;
 }
 
+form p {
+    margin: var(--margin-or-padding) 0;
+}
+
 input, select {
     width: 100%;
     height: 2.5rem;
@@ -214,6 +230,7 @@ input:focus, textarea:focus {
 }
 
 textarea {
+    height: 12rem;
     width: 100%;
     resize: none;
 }
@@ -229,6 +246,7 @@ textarea {
     color: #ffffff;
     background: #000000;
     margin: 0 auto;
+    box-shadow: var(--box-shadow);
 }
 
 a.enter-button {
@@ -254,21 +272,33 @@ main div .report{
 /* для зручності */
 
 @media screen and (min-width: 540px) {
+    :root {
+        var(--margin-or-padding): 4%;
+    }
+
     header {
         padding: 0 1.8rem;
     }
-
-    main > * {
-        margin: 5% auto 0;
-    }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 768px) {
+    :root {
+        var(--margin-or-padding): 2%;
+    }
+
+    .left, .right {
+        display: inline-block;
+        width: 50%;
+    }
+
+    .left {
+        float: left;
+    }
+
     h1, h2 {
-        height: calc(var(--main-height) + 50px);
-        max-width: 32rem;
-        font-size: 170%;
-        margin: 6% auto 2%;
+        width: 88%;
+        height: calc(var(--main-height) * 2);
+        font-size: 140%;
     }
 
     h1 {
@@ -279,28 +309,10 @@ main div .report{
         line-height: calc(var(--main-height) + 50px);
     }
 
-    .instruction {
-        margin-top: 0;
-    }
+}
 
-
-    .left, .right {
-        display: inline-block;
-        width: 50%;
-        margin-bottom: 0;
-    }
-
-    main {
-        padding-bottom: var(--main-height);
-    }
-
-    .left {
-        float: left;
-    }
-
-    form {
-        font-size: 120%;
-        padding: 3% 6%;
-        margin: 0;
+@media screen and (min-width: 1000px) {
+    :root {
+        var(--margin-or-padding): 1%;
     }
 }
