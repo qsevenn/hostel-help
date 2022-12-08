@@ -4,7 +4,8 @@ html, body {
 }
 
 :root {
-    --main-height: 3.7rem
+    --main-height: 3.5rem;
+    --main-block-bg: rgba(255, 255, 255, 0.82);
 }
 
 * {
@@ -42,7 +43,7 @@ header {
     padding: 0 5%;
 }
 
-header, nav, .instruction, .enter-button {
+header, nav, .main-block, .enter-button {
     box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px, rgba(0, 0, 0, 0.23) 0 6px 6px;
 }
 
@@ -112,14 +113,20 @@ main > * {
     width: 88%;
 }
 
-h1 {
+.main-block {
+    width: 88%;
+    background: var(--main-block-bg);
+    border-radius: 35px;
+    max-width: 32rem;
+}
+
+
+h1, h2 {
     color: #ffffff;
     display: inline-block;
 }
 
 .instruction {
-    background: rgba(255, 255, 255, 0.82);
-    border-radius: 35px;
     padding: 2rem 1rem;
 }
 
@@ -148,6 +155,7 @@ h1 {
     width: 90%;
 }
 
+
 .instruction ol li, .icons-block i {
     margin-top: 30px;
     text-align: left;
@@ -158,14 +166,28 @@ button {
     cursor: pointer;
 }
 
+.right {
+    width: 100%;
+    margin: 0;
+}
+
+.right > *, .left > * {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.left {
+    display: none;
+    margin: 0;
+}
+
 form {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     text-align: start;
     font-size: 130%;
-    width: 80%;
-    max-width: 35rem;
+    padding: 6% 6%;
     margin-top: 6%;
 }
 
@@ -231,6 +253,54 @@ main div .report{
 
 /* для зручності */
 
-/* @media screen and (min-width: 768px) {
+@media screen and (min-width: 540px) {
+    header {
+        padding: 0 1.8rem;
+    }
 
-} */
+    main > * {
+        margin: 5% auto 0;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    h1, h2 {
+        height: calc(var(--main-height) + 50px);
+        max-width: 32rem;
+        font-size: 170%;
+        margin: 6% auto 2%;
+    }
+
+    h1 {
+        line-height: calc((var(--main-height) + 50px) / 2);
+    }
+
+    h2 {
+        line-height: calc(var(--main-height) + 50px);
+    }
+
+    .instruction {
+        margin-top: 0;
+    }
+
+
+    .left, .right {
+        display: inline-block;
+        width: 50%;
+        margin-bottom: 0;
+    }
+
+    main {
+        padding-bottom: var(--main-height);
+    }
+
+    .left {
+        float: left;
+    }
+
+    form {
+        font-size: 120%;
+        padding: 3% 6%;
+        margin: 0;
+    }
+}
