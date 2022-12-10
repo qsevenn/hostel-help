@@ -27,13 +27,13 @@
                   <form action="{% url 'change_status' dormitory report.id %}?next={{ request.path|urlencode }}#{{ report.id }}" method="POST">
                      {% csrf_token %}
                      {% if report.status == "Неактивна" %}
-                        <button type="submit">Прийняти</button>
+                        <button class="enter-button" type="submit">Прийняти</button>
                      {% elif report.status == "Активна" %}
-                        <button type="submit" onclick="return confirm('Ви впевнені, що бажаєте закрити запис?')">Закрити</button>
+                        <button class="enter-button" type="submit" onclick="return confirm('Ви впевнені, що бажаєте закрити запис?')">Закрити</button>
                      {% endif %}
                   </form>
                   {% if report.status == "Активна" %}
-                     <button class="reply-button" data-value="{{ report.id }}" onclick="showAnswerPopup(this)">Відповісти {{ report.id }}</button>
+                     <button class="reply-button enter-button" data-value="{{ report.id }}" onclick="showAnswerPopup(this)">Відповісти {{ report.id }}</button>
                      <!-- <form action="" method="POST">
                         {% csrf_token %}
                         {% for field in form %}
@@ -47,8 +47,8 @@
                </div>
 
                {% if report.contact_emails.all %}
-                  <button class="show-replies" data-value="{{ report.id }}" onclick="showReplies(this)">Показати відповіді</button>
-                  <button class="hide-replies" data-value="{{ report.id }}" onclick="hideReplies(this)">Сховати відповіді</button>
+                  <button class="show-replies enter-button" data-value="{{ report.id }}" onclick="showReplies(this)">Показати відповіді</button>
+                  <button class="hide-replies enter-button" data-value="{{ report.id }}" onclick="hideReplies(this)">Сховати відповіді</button>
                {% endif %}
                <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
                <div class="all-replies" data-value="{{ report.id }}">
@@ -88,8 +88,8 @@
          </div>
 
          {% if report.contact_emails.all %}
-            <button class="show-replies" data-value="{{ report.id }}" onclick="showReplies(this)">Показати відповіді</button>
-            <button class="hide-replies" data-value="{{ report.id }}" onclick="hideReplies(this)">Сховати відповіді</button>
+            <button class="show-replies enter-button" data-value="{{ report.id }}" onclick="showReplies(this)">Показати відповіді</button>
+            <button class="hide-replies enter-button" data-value="{{ report.id }}" onclick="hideReplies(this)">Сховати відповіді</button>
          {% endif %}
          <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
          <div class="all-replies" data-value="{{ report.id }}">

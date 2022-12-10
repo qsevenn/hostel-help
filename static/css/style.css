@@ -122,7 +122,7 @@ main {
 }
 
 main > *, .left > *, .right > * {
-    margin: var(--margin-or-padding) auto 0;
+    margin: 2rem auto 0;
     width: 88%;
 }
 
@@ -130,31 +130,32 @@ main > *, .left > *, .right > * {
     width: 88%;
     background: var(--main-block-bg);
     border-radius: 35px;
-    max-width: 32rem;
+    max-width: 34rem;
     box-shadow: var(--box-shadow);
 }
 
 h1, h2 {
     font-size: 175%;
-    max-width: 32rem;
+    max-width: 34rem;
     color: #ffffff;
     display: inline-block;
-    border: solid;
 }
 
 .instruction, form {
-    padding: 2rem 1rem;
+    padding: 1.5rem;
 }
 
-.instruction figcaption {
-    width: 90%;
+.login-form, .instruction {
+    height: 29rem;
+    min-height: fit-content;
+}
+
+.instruction {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
     font-size: 120%;
-    margin: 0 auto;
-}
-
-.list-decoration {
-    margin: 0 auto;
-    width: 75%;
 }
 
 .icons-block, .instruction ol {
@@ -162,22 +163,27 @@ h1, h2 {
 }
 
 .icons-block {
-    width: 10%;
+    width: 12%;
     float: left;
 }
 
 .instruction ol {
     display: inline-block;
-    width: 90%;
+    width: 80%;
 }
 
+/*.icons-block {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    flex-wrap: wrap;*/
+/*    align-items: center;*/
+/*}*/
+
 .instruction ol li, .icons-block i {
-    margin-top: 35px;
+    margin-top: 2rem;
     text-align: left;
     font-weight: bold;
 }
-
-
 
 .right {
     width: 100%;
@@ -199,8 +205,11 @@ form {
     flex-direction: column;
     flex-wrap: wrap;
     text-align: start;
-    font-size: 130%;
-    padding: 6% 6%;
+    font-size: 120%;
+}
+
+form > *, .instruction figcaption {
+    margin-top: 1.7rem;
 }
 
 input, textarea, select {
@@ -214,10 +223,6 @@ input, textarea, select, .enter-button, optgroup {
     border: none;
     font-size: 75%;
     padding: 0.6rem;
-}
-
-form p {
-    margin: var(--margin-or-padding) 0;
 }
 
 input, select {
@@ -272,22 +277,17 @@ main div .report{
 /* для зручності */
 
 @media screen and (min-width: 540px) {
-    :root {
-        var(--margin-or-padding): 4%;
-    }
-
     header {
         padding: 0 1.8rem;
     }
 }
 
 @media screen and (min-width: 768px) {
-    :root {
-        var(--margin-or-padding): 2%;
-    }
 
     .left, .right {
-        display: inline-block;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
         width: 50%;
     }
 
@@ -312,7 +312,5 @@ main div .report{
 }
 
 @media screen and (min-width: 1000px) {
-    :root {
-        var(--margin-or-padding): 1%;
-    }
+
 }
