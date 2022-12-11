@@ -303,7 +303,7 @@ def profile(request, dormitory=None):
 
 
 def report(request):
-    if request.user.is_authenticated and not request.user.is_superuser and not request.user.is_staffuser:
+    if request.user.is_authenticated and not request.user.is_superuser and not request.user.is_staff:
         if request.method == "POST":
             form = ReportForm(request.POST, initial={'email': request.user.email})
             if form.is_valid():
@@ -319,7 +319,7 @@ def report(request):
         context = {'form': form}
         return render(request, 'report-problem.html', context)
     else:
-        return HttpResponseBadRequest("Сторінка не доступна")
+        return HttpResponseBadRequest("Сторінка недоступна")
 
 
 def delete_report(request, report_id, dormitory):

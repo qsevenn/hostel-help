@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-    <h2>Реєстрація</h2>
+    <h1>Реєстрація</h2>
     <form action="" method="POST" class="main-block">
     {% csrf_token %}
     {% for field in form %}
@@ -19,6 +19,6 @@
     <button type="submit" class="enter-button">Зареєструватися</button>
 </form>
     <p>Уже маєте акаунт?
-        <a href="{% url 'login' %}">Вхід</a>
+        <a href="{% url 'index' %}">Вхід</a>
     </p>
 {% endblock %}

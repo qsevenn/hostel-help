@@ -11,6 +11,24 @@ window.onclick = function (event) {
     }
 }
 
+// function showPassword(){
+//     let x = $('input[type="password"]');
+//     if (x.type === "password") {
+//     x.type = "text";
+//   } else {
+//     x.type = "password";
+//   }
+// }
+
+function showPassword() {
+  let input = document.getElementById("id_password");
+  if (input.type === "password") {
+    input.type = "text";
+  } else {
+    input.type = "password";
+  }
+}
+
 function showAnswerPopup(obj) {
     report_id = obj.getAttribute('data-value');
     answer_form = document.getElementById('report-answer');

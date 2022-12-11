@@ -3,8 +3,8 @@
 {% load static %}
 
 {% block content %}
-<div class="left">
-        <h1 class="main-h1">Вирішення побутових проблем жителів студміста КПІ</h1>
+<div class="side-wrapper">
+        <h1 class="heading">Вирішення побутових проблем жителів студміста КПІ</h1>
         <figure class="instruction main-block">
         <figcaption>Повідом адміністрацію про наявну проблему за три кроки:</figcaption>
         <div class="list-decoration">
@@ -21,15 +21,16 @@
         </div>
         </figure>
     </div>
-
 {% if user.is_authenticated %}
-    <div class="alert alert-success" role="alert">
-        <h3>Welcome {{ user.username }}!</h3>
-        <a href="{% url 'logout' %}?next=../">Logout?</a>
+    <div class="alert alert-success side-wrapper" role="alert">
+        <h2 class="heading">Вітаємо, {{ user.username }}!</h2>
+        <p>
+            <a href="{% url 'logout' %}?next=../">Вийти?</a>
+        </p>
     </div>
 {% else %}
-<div class="right">
-        <h2>Вхід</h2>
+        <div class="side-wrapper">
+        <h2 class="heading">Вхід</h2>
 
         <form action="" method="POST" class="main-block login-form">
             {% csrf_token %}
@@ -41,14 +42,16 @@
                 {% endfor %}
 
             {% endfor %}
+            <i class="fa-regular fa-eye" onclick="showPassword()"><span class="fa-sr-only"></span></i>
             <button type="submit" class="enter-button">Вхід</button>
         </form>
         <div class="alert alert-success" role="alert">
             <p><a href="{% url 'password_reset' %}">Забули пароль?</a></p>
-<!--            <a href="{% url 'login' %}" class="enter-button">Вхід</a>-->
             <p>Уперше тут?
                 <a href="{% url 'register' %}">Реєстрація</a>
             </p>
+        </div>
+
         </div>
 
 
@@ -56,7 +59,7 @@
 <!--        <p>Уперше тут?-->
 <!--            <a href="{% url 'register' %}">Реєстрація</a>-->
 <!--        </p>-->
-    </div>
+
 
 <!--    <div class="alert alert-success" role="alert">-->
 <!--        <a href="{% url 'login' %}" class="enter-button">Вхід</a>-->

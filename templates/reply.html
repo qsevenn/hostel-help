@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-    <h2>Відповісти</h2>
+    <h1>Відповісти</h1>
    <form action="{% url 'profile' %}" method="POST" class="main-block">
         {% csrf_token %}
         <p>Кому: <input type="text" name="to" placeholder="Email"/></p>
