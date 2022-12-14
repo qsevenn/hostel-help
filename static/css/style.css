@@ -22,7 +22,6 @@ button, .fa-eye {
 
 * {
     box-sizing: border-box;
-    overflow: scroll;
 }
 
 body {
@@ -75,7 +74,7 @@ header {
     border: none;
     color: #ffffff;
     border-radius: 10px;
-    height: 2.5rem;
+    min-height: 2.5rem;
     width: 2.5rem;
 }
 
@@ -119,9 +118,9 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    font-size: 1.5rem;
+    font-size: 120%;
     text-align: center;
-    padding: var(--main-height) 0;
+    padding: var(--main-height) 0 0;
     background: linear-gradient(#41B562, #9CE4B0);
     flex: 1 0 auto;
 }
@@ -131,16 +130,41 @@ main > *, .side-wrapper > * {
     width: var(--main-width);
 }
 
+main > *:last-child  {
+    margin-bottom: calc(var(--main-height) / 1.5);
+}
+
+.logged {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.logged > * {
+
+}
+
+.side-wrapper .instruction {
+    margin-bottom: calc(var(--main-height) / 1.5);
+}
+
 .main-block {
     width: var(--main-width);
     background: var(--main-block-bg);
     border-radius: 35px;
     max-width: 50rem;
+    padding: 1.7rem;
+    font-size: 120%;
+    overflow: scroll;
     box-shadow: var(--box-shadow);
 }
 
-.side-wrapper > * {
+.side-wrapper {
     width: 100%;
+}
+
+.side-wrapper > * {
+    width: var(--main-width);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -148,10 +172,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #ffffff;
     height: fit-content;
     display: inline-block;
-}
-
-.instruction, form {
-    padding: 1.7rem;
+    padding-bottom: 0;
 }
 
 .instruction {
@@ -159,11 +180,10 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    font-size: 120%;
 }
 
 .icons-block, .instruction ol, .side-wrapper, .alert {
-    margin: 0;
+    margin: 0 auto;
 }
 
 .icons-block {
@@ -182,12 +202,21 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
 
+.fa-circle-user {
+    font-size: 10rem;
+    margin-bottom: 1.7rem;
+    color: #41B562;
+}
+
+.icons-block i {
+    margin-top: 1.78rem;
+}
+
 form {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     text-align: start;
-    font-size: 120%;
 }
 
 form div {
@@ -242,7 +271,7 @@ textarea {
     padding: 0 2.5rem;
     height: var(--main-height);
     line-height: var(--main-height);
-    font-size: 80%;
+    font-size: 100%;
     border-radius: 2.5rem;
     color: #ffffff;
     background: #000000;
@@ -264,34 +293,42 @@ footer a {
     font-size: 125%;
 }
 
-/* для зручності */
-
-/*main div .report{*/
-/*    background-color: rgba(156, 228, 176, 0.9);*/
-/*}*/
-
-/* для зручності */
-
 @media screen and (min-width: 540px) {
     header {
         padding: 0 1.8rem;
     }
+    main {
+        font-size: 130%;
+    }
+
+    .fa-circle-user {
+        font-size: 11rem;
+    }
 }
 
 @media screen and (min-width: 768px) {
-    .login-form, .instruction {
-        height: 23rem;
+    main {
+        font-size: 140%;
+    }
+
+    .fa-circle-user {
+        font-size: 12rem;
     }
 
     .side-wrapper {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        width: calc(var(--main-width) / 2);
+        align-items: center;
+        width: 50%;
     }
 
     .side-wrapper > * {
-        width: 100%;
+        width: 88%;
+    }
+
+    .side-wrapper .main-block {
+        height: 23rem;
     }
 
     .side-wrapper .heading{
@@ -299,10 +336,16 @@ footer a {
         justify-content: center;
         align-items: center;
         height: calc(var(--main-height) * 1.5);
-        font-size: 150%;
+        font-size: 170%;
     }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1080px) {
+    main {
+        font-size: 150%;
+    }
 
+    .fa-circle-user {
+        font-size: 13rem;
+    }
 }

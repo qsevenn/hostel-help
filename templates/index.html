@@ -24,6 +24,10 @@
 {% if user.is_authenticated %}
     <div class="alert alert-success side-wrapper" role="alert">
         <h2 class="heading">Вітаємо, {{ user.username }}!</h2>
+        <div class="logged main-block">
+            <i class="fa-solid fa-circle-user"><span class="fa-sr-only">User</span></i>
+            <a href="{% url 'report' %}" class="enter-button">Заповнити заявку</a>
+        </div>
         <p>
             <a href="{% url 'logout' %}?next=../">Вийти?</a>
         </p>
