@@ -33,7 +33,7 @@
                      {% endif %}
                   </form>
                   {% if report.status == "Активна" %}
-                     <button class="reply-button enter-button" data-value="{{ report.id }}" onclick="showAnswerPopup(this)">Відповісти {{ report.id }}</button>
+                     <button class="reply-button enter-button" data-value="{{ report.id }}" onclick="showAnswerPopup(this)">Відповісти</button>
                      <!-- <form action="" method="POST">
                         {% csrf_token %}
                         {% for field in form %}
@@ -80,6 +80,7 @@
       {% for report in reports %}
          <div class="">
             <h2>{{ report.title }}</h2>
+            <p>{{ report.status }}</p>
             <p>{{ report.date }}</p>
             <h6>{{ report.problem_type }}</h6>
             <h6>{{ report.dormitory }}</h6>

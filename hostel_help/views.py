@@ -153,7 +153,6 @@ def reset_password_complete(request):
 
 
 def activate(request, uidb64, token):  
-    # users = User.objects.all()
     try:  
         uid = force_str(urlsafe_base64_decode(uidb64))  
         user = User.objects.get(pk=uid)  
@@ -248,60 +247,6 @@ def profile(request, dormitory=None):
             return render(request, 'profile.html', {'user': request.user, 'reports': reports, 'replies': replies})
 
 
-# def profile(request):
-#     if request.method == 'POST':
-#         if request.user.is_superuser:
-#             replies = Contact.objects.all()
-#             reports = Report.objects.all().order_by('-date')
-#             form = ContactForm(request.POST)
-#             if form.is_valid():
-#                 instance = form.save(commit=False)
-#                 report_id = int(request.POST.get('report_id'))
-#                 if report_id:
-#                     report = Report.objects.get(id=report_id)
-#                     instance.report_id = report
-#                 instance.email = reports.get(id=report_id).email
-#                 instance.date_report = Report.objects.get(id=report_id).date
-#                 instance.save()
-#                 subject = 'HOSTEL HELP KPI'
-#                 message = instance.message
-#                 email_from = settings.EMAIL_HOST_USER
-#                 recipient_list = [instance.email,]
-#                 send_mail(subject, message, email_from, recipient_list, fail_silently=False)
-#                 messages.success(request, f'Your message has been sent.')
-#                 return redirect('profile')
-#         # if request.user.is_authenticated:
-#         #     reports = Report.objects.filter(email=request.user.email).order_by('-date')
-#         #     replies = Contact.objects.filter(email=request.user.email)
-#     else:
-#         if request.user.is_superuser:
-#             reports = Report.objects.all().order_by('-date')
-#             page = request.GET.get('page', 1)
-#             paginator = Paginator(reports, 8)
-#             try:
-#                 reports = paginator.page(page)
-#             except PageNotAnInteger:
-#                 reports = paginator.page(1)
-#             except EmptyPage:
-#                 reports = paginator.page(paginator.num_pages)
-
-#             replies = Contact.objects.all()
-#             form = ContactForm()
-#             return render(request, 'profile.html', {'user': request.user,'form': form, 'reports': reports, 'replies': replies})
-#         if request.user.is_authenticated:
-#             reports = Report.objects.filter(email=request.user.email).order_by('-date')
-#             page = request.GET.get('page', 1)
-#             paginator = Paginator(reports, 8)
-#             try:
-#                 reports = paginator.page(page)
-#             except PageNotAnInteger:
-#                 reports = paginator.page(1)
-#             except EmptyPage:
-#                 reports = paginator.page(paginator.num_pages)
-#             replies = Contact.objects.filter(email=request.user.email)
-#             return render(request, 'profile.html', {'user': request.user, 'reports': reports, 'replies': replies})
-
-
 def report(request):
     if request.user.is_authenticated and not request.user.is_superuser and not request.user.is_staff:
         if request.method == "POST":
@@ -337,7 +282,3 @@ def change_status(request, report_id, dormitory):
         report_to_change.status = "Закрита"
     report_to_change.save()
     return HttpResponseRedirect(reverse('profile', args=[dormitory]))
-
-
-def reply(request):
-    return render(request, 'reply.html')
