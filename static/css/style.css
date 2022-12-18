@@ -67,57 +67,59 @@ header {
 }
 
 /*menu button start*/
-#menu-button {
-    vertical-align: middle;
-    font-size: 130%;
-    background: none;
-    border: none;
-    color: #ffffff;
-    border-radius: 10px;
-    min-height: 2.5rem;
-    width: 2.5rem;
-}
+/*#menu-button {*/
+/*    vertical-align: middle;*/
+/*    font-size: 130%;*/
+/*    background: none;*/
+/*    border: none;*/
+/*    color: #ffffff;*/
+/*    border-radius: 10px;*/
+/*    min-height: 2.5rem;*/
+/*    width: 2.5rem;*/
+/*}*/
 
-#menu-button::before {
-    font-family: "Fontawesome", sans-serif;
-    content: "\f0c9";
-}
+/*#menu-button::before {*/
+/*    font-family: "Fontawesome", sans-serif;*/
+/*    content: "\f0c9";*/
+/*}*/
 
-#menu-button:hover, #menu-button:focus {
-    background: #ffffff36;
-}
+/*#menu-button:hover, #menu-button:focus {*/
+/*    background: #ffffff36;*/
+/*}*/
 /*menu button end*/
+header .fa-circle-user {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 200%;
+}
 
 .show {
     display: block;
 }
 
-nav {
-    display: none;
-    position: absolute;
-    top: var(--main-height);
-    left: 0;
-    z-index: 1;
-    background-color: #ffffff;
-    text-align: center;
-    width: 100vw;
-    box-shadow: var(--box-shadow);
-}
+/*nav {*/
+/*    display: none;*/
+/*    position: absolute;*/
+/*    top: var(--main-height);*/
+/*    left: 0;*/
+/*    z-index: 1;*/
+/*    background-color: #ffffff;*/
+/*    text-align: center;*/
+/*    width: 100vw;*/
+/*    box-shadow: var(--box-shadow);*/
+/*}*/
 
-nav a {
-    width: 100%;
-    height: var(--main-height);
-    line-height: var(--main-height);
-    display: inline-block;
-    color: #000000;
-    font-size: 140%;
-    border-bottom: #000000 2px solid;
-}
+/*nav a {*/
+/*    width: 100%;*/
+/*    height: var(--main-height);*/
+/*    line-height: var(--main-height);*/
+/*    display: inline-block;*/
+/*    color: #000000;*/
+/*    font-size: 140%;*/
+/*    border-bottom: #000000 2px solid;*/
+/*}*/
 
 main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
     font-size: 120%;
     text-align: center;
     padding: var(--main-height) 0 0;
@@ -140,10 +142,6 @@ main > *:last-child  {
     justify-content: space-evenly;
 }
 
-.logged > * {
-
-}
-
 .side-wrapper .instruction {
     margin-bottom: calc(var(--main-height) / 1.5);
 }
@@ -159,6 +157,39 @@ main > *:last-child  {
     box-shadow: var(--box-shadow);
 }
 
+.folders {
+    align-self: start;
+    justify-self: start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: start !important;
+}
+
+.folders > * {
+    margin-top: 2rem;
+}
+
+.folders-elem {
+    width: var(--main-width);
+    max-width: 400px;
+    height: 135px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.folders-elem h3 {
+    margin: 0;
+}
+
+.folders-elem h3::before {
+    font-family: "Fontawesome", sans-serif;
+    content: "\f015";
+    margin-right: 1rem;
+    font-size: 90%;
+}
+
 .side-wrapper {
     width: 100%;
 }
@@ -167,7 +198,7 @@ main > *:last-child  {
     width: var(--main-width);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2 {
     font-size: 175%;
     color: #ffffff;
     height: fit-content;
@@ -202,7 +233,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
 
-.fa-circle-user {
+.main-block .fa-circle-user {
     font-size: 10rem;
     margin-bottom: 1.7rem;
     color: #41B562;
@@ -301,7 +332,7 @@ footer a {
         font-size: 130%;
     }
 
-    .fa-circle-user {
+    .main-block .fa-circle-user {
         font-size: 11rem;
     }
 }
@@ -311,7 +342,7 @@ footer a {
         font-size: 140%;
     }
 
-    .fa-circle-user {
+    .main-block .fa-circle-user {
         font-size: 12rem;
     }
 
@@ -321,6 +352,14 @@ footer a {
         flex-wrap: wrap;
         align-items: center;
         width: 50%;
+    }
+
+    .side-wrapper:first-child {
+        float: left;
+    }
+
+    .folders {
+        width: 100%;
     }
 
     .side-wrapper > * {
@@ -338,6 +377,10 @@ footer a {
         height: calc(var(--main-height) * 1.5);
         font-size: 170%;
     }
+
+    .folders-elem {
+        width: calc(var(--main-width) / 2);
+    }
 }
 
 @media screen and (min-width: 1080px) {
@@ -345,7 +388,11 @@ footer a {
         font-size: 150%;
     }
 
-    .fa-circle-user {
+    .main-block .fa-circle-user {
         font-size: 13rem;
+    }
+
+    .folders-elem {
+        width: calc(var(--main-width) / 3);
     }
 }

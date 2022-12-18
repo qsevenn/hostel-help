@@ -26,7 +26,11 @@
         <h2 class="heading">Вітаємо, {{ user.username }}!</h2>
         <div class="logged main-block">
             <i class="fa-solid fa-circle-user"><span class="fa-sr-only">User</span></i>
-            <a href="{% url 'report' %}" class="enter-button">Заповнити заявку</a>
+            {% if user.is_superuser %}
+                <a href="{% url 'folders' %}" class="enter-button">До заявок</a>
+            {% else %}
+                <a href="{% url 'report' %}" class="enter-button">Заповнити заявку</a>
+            {% endif %}
         </div>
         <p>
             <a href="{% url 'logout' %}?next=../">Вийти?</a>
