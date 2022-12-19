@@ -66,27 +66,6 @@ header {
     color: #ffffff;
 }
 
-/*menu button start*/
-/*#menu-button {*/
-/*    vertical-align: middle;*/
-/*    font-size: 130%;*/
-/*    background: none;*/
-/*    border: none;*/
-/*    color: #ffffff;*/
-/*    border-radius: 10px;*/
-/*    min-height: 2.5rem;*/
-/*    width: 2.5rem;*/
-/*}*/
-
-/*#menu-button::before {*/
-/*    font-family: "Fontawesome", sans-serif;*/
-/*    content: "\f0c9";*/
-/*}*/
-
-/*#menu-button:hover, #menu-button:focus {*/
-/*    background: #ffffff36;*/
-/*}*/
-/*menu button end*/
 header .fa-circle-user {
     color: #ffffff;
     text-decoration: none;
@@ -96,28 +75,6 @@ header .fa-circle-user {
 .show {
     display: block;
 }
-
-/*nav {*/
-/*    display: none;*/
-/*    position: absolute;*/
-/*    top: var(--main-height);*/
-/*    left: 0;*/
-/*    z-index: 1;*/
-/*    background-color: #ffffff;*/
-/*    text-align: center;*/
-/*    width: 100vw;*/
-/*    box-shadow: var(--box-shadow);*/
-/*}*/
-
-/*nav a {*/
-/*    width: 100%;*/
-/*    height: var(--main-height);*/
-/*    line-height: var(--main-height);*/
-/*    display: inline-block;*/
-/*    color: #000000;*/
-/*    font-size: 140%;*/
-/*    border-bottom: #000000 2px solid;*/
-/*}*/
 
 main {
     font-size: 120%;
