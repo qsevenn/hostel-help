@@ -11,17 +11,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'SRS-Logo-TIFF-0-1.png' %}" rel="icon" type="image/png"/>
+    {% block css_files %}
+    {% endblock css_files %}
     <script src="{% static 'js/script.js' %}"></script>
     <script src="https://kit.fontawesome.com/72cdf14cdd.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <p class="site-title">HOSTEL HELP KPI</p>
-        <div class="navigation">
-            <button id="menu-button" onclick="openMenu()" title="Меню сайту"></button>
-            <nav id="menu">
-            </nav>
-        </div>
+        <a href="{% url 'index' %}"><p class="site-title">HOSTEL HELP KPI</p></a>
+        <a href="{% url 'profile' %}" class="fa-solid fa-circle-user"><span class="fa-sr-only">Profile</span></a>
+<!--        <div class="navigation">-->
+<!--            <button id="menu-button" onclick="openMenu()" title="Меню сайту"></button>-->
+<!--            <nav id="menu">-->
+<!--            </nav>-->
+<!--        </div>-->
     </header>
 
     <main>
@@ -34,7 +38,7 @@
                 class="fa-sr-only">Telegram</span></a>
         <a href="https://www.instagram.com/sr_kpi/" target="_blank" class="fa-brands fa-instagram"><span
                 class="fa-sr-only">Instagram</span></a>
-        <a href="#" target="_blank" class="fa-brands fa-facebook"><span
+        <a href="https://www.facebook.com/srkpi" target="_blank" class="fa-brands fa-facebook"><span
                 class="fa-sr-only">Facebook</span></a>
     </footer>
 </body>

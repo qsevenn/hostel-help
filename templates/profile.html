@@ -1,53 +1,86 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% block css_files %}
+<link href="{% static '/css/profile.css' %}" rel="stylesheet" type="text/css" />
+{% endblock css_files %}
 
 {% block content %}
    {% if user.is_superuser %}
       {% if reports %}
          {% for report in reports %}
-            <div class="">
-               <h3>{{ report.email }}</h3>
-               <h2>{{ report.title }}</h2>
-               <p>{{ report.date }}</p>
-               <h6>{{ report.problem_type }}</h6>
-               <h6>{{ report.dormitory }}</h6>
-               <p>{{ report.exact_place }}</p>
-               <p>{{ report.description }}</p>
-               <button onclick="">Відповісти</button>
-            </div>
-            <!-- це має з'являтись після нажаття на кнопку відповісти -->
-            <form action="" method="POST">
-               {% csrf_token %}
-               {% for field in form %}
-                  {{ field.label }}
-                  {{ field }}
-               {% endfor %}
-               <input type="hidden" name="report_id" value="{{ report.id }}">
-               <input type="submit" value="Надіслати"/>
-            </form>
-            <!-- це має з'являтись після нажаття на кнопку відповісти -->
-
-            {% if report.contact_emails.all %}
-               <button>Показати відповіді</button>
-            {% endif %}
-            <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
-            {% for reply in report.contact_emails.all %}
-                <div class="">
-                  <p class="">{{ reply.date }}</p>
-                  <p>{{ reply.message }}</p>
+         <div class="report" id="{{ report.id }}">
+               <div class="report-content">
+                  <p>{{ report.date }}   {{ report.status }} <a onclick="return confirm('Ви впевнені, що бажаєте видалити запис?')" href="{% url 'delete_report' dormitory report.id %}">X</a>
+                     <a href="https://t.me/share/url?url=http://127.0.0.1:8000/&text={{ report.date }}%0A
+{{ report.email }}%0A{{ report.title }}%0AТип: {{ report.problem_type }}%0AГуртожиток: {{ report.dormitory }}%0AКонкретне місце: {{report.exact_place }}%0A
+Опис: {{ report.description }}" target="_blank">
+                        Поширити в Telegram
+                     </a>
+                  </p>
+                  <h3>{{ report.email }}</h3>
+                  <h2>{{ report.title }}</h2>
+                  <h6>{{ report.problem_type }}</h6>
+                  <h6>{{ report.dormitory }}</h6>
+                  <p>{{ report.exact_place }}</p>
+                  <p>{{ report.description }}</p>
+                  <form action="{% url 'change_status' dormitory report.id %}?next={{ request.path|urlencode }}#{{ report.id }}" method="POST">
+                     {% csrf_token %}
+                     {% if report.status == "Неактивна" %}
+                        <button class="enter-button" type="submit">Прийняти</button>
+                     {% elif report.status == "Активна" %}
+                        <button class="enter-button" type="submit" onclick="return confirm('Ви впевнені, що бажаєте закрити запис?')">Закрити</button>
+                     {% endif %}
+                  </form>
+                  {% if report.status == "Активна" %}
+                     <button class="reply-button enter-button" data-value="{{ report.id }}" onclick="showAnswerPopup(this)">Відповісти</button>
+                     <!-- <form action="" method="POST">
+                        {% csrf_token %}
+                        {% for field in form %}
+                           {{ field.label }}
+                           {{ field }}
+                        {% endfor %}
+                        <input type="hidden" name="report_id" value="{{ report.id }}">
+                        <input type="submit" value="Надіслати"/>
+                     </form> -->
+                  {% endif %}
                </div>
-            {% endfor %}
+
+               {% if report.contact_emails.all %}
+                  <button class="show-replies enter-button" data-value="{{ report.id }}" onclick="showReplies(this)">Показати відповіді</button>
+                  <button class="hide-replies enter-button" data-value="{{ report.id }}" onclick="hideReplies(this)">Сховати відповіді</button>
+               {% endif %}
+               <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
+               <div class="all-replies" data-value="{{ report.id }}">
+                  {% for reply in report.contact_emails.all %}
+                     <div class="reply">
+                        <p class="">{{ reply.date }}</p>
+                        <p>{{ reply.message }}</p>
+                     </div>
+                  {% endfor %}
+               </div>
             <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
 
+         </div>   
          {% endfor %}
+         <form action="" method="POST" id="report-answer" onsubmit="refreshToSameScroll()">
+            <button type="button" class="cancel" onclick="hideAnswerPopup()">Х</button>
+            {% csrf_token %}
+            {% for field in form %}
+               {{ field.label }}
+               {{ field }}
+            {% endfor %}
+            <input type="hidden" id="report_id" name="report_id" value="">
+            <input type="submit" value="Надіслати" onclick="hideAnswerPopup()"/>
+         </form>
       {% endif %}
 
    {% else %}
       <h2>Мої повідомлення</h2>
       {% for report in reports %}
-         <div class="">
+         <div class="main-block">
             <h2>{{ report.title }}</h2>
+            <p>{{ report.status }}</p>
             <p>{{ report.date }}</p>
             <h6>{{ report.problem_type }}</h6>
             <h6>{{ report.dormitory }}</h6>
@@ -56,15 +89,30 @@
          </div>
 
          {% if report.contact_emails.all %}
-            <button>Показати відповіді</button>
+            <button class="show-replies enter-button" data-value="{{ report.id }}" onclick="showReplies(this)">Показати відповіді</button>
+            <button class="hide-replies enter-button" data-value="{{ report.id }}" onclick="hideReplies(this)">Сховати відповіді</button>
          {% endif %}
          <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
-         {% for reply in report.contact_emails.all %}
+         <div class="all-replies" data-value="{{ report.id }}">
+            {% for reply in report.contact_emails.all %}
+               <div class="reply">
+                  <p class="">{{ reply.date }}</p>
+                  <p>{{ reply.message }}</p>
+               </div>
+            {% endfor %}
+         </div>
+         <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
+
+         <!-- {% if report.contact_emails.all %}
+            <button>Показати відповіді</button>
+         {% endif %} -->
+         <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
+         <!-- {% for reply in report.contact_emails.all %}
                <div class="">
                <p class="">{{ reply.date }}</p>
                <p>{{ reply.message }}</p>
             </div>
-         {% endfor %}
+         {% endfor %} -->
          <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
       {% endfor %}
    {% endif %} 

@@ -1,0 +1,59 @@
+/* для зручності */
+div.report{
+    background-color: rgba(156, 228, 176, 0.9);
+}
+
+.report-content{
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#report-answer {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%, 5%);
+    z-index: 1000;
+}
+.main-block {
+    margin: 5rem auto 0;
+}
+
+.main-block > * {
+    margin: 1rem auto 0;
+}
+
+.all-replies{
+    display:none;
+}
+
+.show-replies{
+    display: block;
+}
+
+.hide-replies{
+    display: none;
+}
+
+ul.pagination li {
+    list-style: none;
+    display: inline-block;
+    font-size: 150%;
+    margin: 0 0.3rem;
+}
+
+ul.pagination {
+    padding: 0;
+}
+
+h2 {
+    color: #000000;
+}
+
+h3, h4, h5, h6, p {
+    font-size: 120%;
+}
+
+.enter-button {
+    margin-top: 1rem;
+}

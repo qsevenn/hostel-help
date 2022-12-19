@@ -6,23 +6,25 @@
     {% if user.is_autheticated %}
         <h2>Ви вже зареєстровані, {{ user.username }}</h2>
     {% else %}
-        <h1>Вхід</h1>
+    <div class="right">
+        <h2>Вхід</h2>
 
-        <form action="" method="POST">
+        <form action="" method="POST" class="main-block login-form">
             {% csrf_token %}
             {% for field in form %}
                 <p>{{ field.label }}: {{ field }}</p>
 
                 {% for error in field.errors %}
-                    <small style="color: red">{{ error }}</small><br>
+                    <small>{{ error }}</small><br>
                 {% endfor %}
 
             {% endfor %}
             <button type="submit" class="enter-button">Вхід</button>
         </form>
-        <p>Вперше тут?
+        <p><a href="{% url 'password_reset' %}">Забули пароль?</a></p>
+        <p>Уперше тут?
             <a href="{% url 'register' %}">Реєстрація</a>
         </p>
-<!--        <p>Don't have an account? <a href="{% url 'register' %}">Signup here</a></p>-->
+    </div>
     {% endif %}
 {% endblock %}

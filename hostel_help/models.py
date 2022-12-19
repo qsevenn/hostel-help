@@ -19,9 +19,11 @@ class Report(models.Model):
     exact_place = models.CharField(max_length=100)
     description = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50, default="Неактивна")
 
     def __str__(self):
         return f"{self.title} {self.date}"
+
 
 class Contact(models.Model):
     # name = models.CharField(max_length=250)

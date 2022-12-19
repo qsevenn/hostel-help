@@ -4,6 +4,7 @@ from hostel_help.models import Report
 
 # from .management.commands.send_email import send_mail
 
+
 # Register your models here.
 @admin.register(Report)
 class ReportAdmin(admin.ModelAdmin):
@@ -19,6 +20,3 @@ class ReportAdmin(admin.ModelAdmin):
         return False
 
     # def send_mail(self, request, obj=None)
-
-
-

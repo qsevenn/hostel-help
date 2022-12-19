@@ -4,18 +4,21 @@
 
 {% block content %}
     <h1>Реєстрація</h1>
-   <form action="" method="POST">
+    <form action="" method="POST" class="main-block">
     {% csrf_token %}
     {% for field in form %}
         <div>
             <p>{{ field.label }}: {{ field }}</p>
 
             {% for error in field.errors %}
-                <small style="color: red">{{ error }}</small><br>
+                <small>{{ error }}</small><br>
             {% endfor %}
 
         </div>
     {% endfor %}
     <button type="submit" class="enter-button">Зареєструватися</button>
 </form>
+    <p>Уже маєте акаунт?
+        <a href="{% url 'index' %}">Вхід</a>
+    </p>
 {% endblock %}

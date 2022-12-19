@@ -1,10 +1,23 @@
+/*general start*/
 html, body {
     height: 100%;
     margin: 0;
 }
 
 :root {
-    --main-height: 3.7rem
+    --main-height: 3.5rem;
+    --main-block-bg: rgba(255, 255, 255, 0.82);
+    --margin-or-padding: 8%;
+    --main-width: 88%;
+    --box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px, rgba(0, 0, 0, 0.23) 0 6px 6px;
+}
+
+small {
+    color: red;
+}
+
+button, .fa-eye {
+    cursor: pointer;
 }
 
 * {
@@ -24,6 +37,8 @@ a {
 footer a, nav a, .enter-button {
     text-decoration: none;
 }
+/*general end*/
+
 
 header, footer {
     background: #000000;
@@ -40,10 +55,7 @@ header {
     top: 0;
     justify-content: space-between;
     padding: 0 5%;
-}
-
-header, nav, .instruction, .enter-button {
-    box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px, rgba(0, 0, 0, 0.23) 0 6px 6px;
+    box-shadow: var(--box-shadow);
 }
 
 .site-title {
@@ -51,110 +63,184 @@ header, nav, .instruction, .enter-button {
     padding-top: 0.25rem;
     margin: 0;
     font-weight: bold;
-}
-
-#menu-button {
-    vertical-align: middle;
-    font-size: 130%;
-    background: none;
-    border: none;
     color: #ffffff;
-    border-radius: 10px;
-    height: 2.5rem;
-    width: 2.5rem;
 }
 
-#menu-button::before {
-    font-family: "Fontawesome", sans-serif;
-    content: "\f0c9";
-}
+/*menu button start*/
+/*#menu-button {*/
+/*    vertical-align: middle;*/
+/*    font-size: 130%;*/
+/*    background: none;*/
+/*    border: none;*/
+/*    color: #ffffff;*/
+/*    border-radius: 10px;*/
+/*    min-height: 2.5rem;*/
+/*    width: 2.5rem;*/
+/*}*/
 
-#menu-button:hover, #menu-button:focus {
-    background: #ffffff36;
+/*#menu-button::before {*/
+/*    font-family: "Fontawesome", sans-serif;*/
+/*    content: "\f0c9";*/
+/*}*/
+
+/*#menu-button:hover, #menu-button:focus {*/
+/*    background: #ffffff36;*/
+/*}*/
+/*menu button end*/
+header .fa-circle-user {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 200%;
 }
 
 .show {
     display: block;
 }
 
-nav {
-    display: none;
-    position: absolute;
-    top: var(--main-height);
-    left: 0;
-    z-index: 1;
-    background-color: #ffffff;
-    text-align: center;
-    width: 100vw;
-}
+/*nav {*/
+/*    display: none;*/
+/*    position: absolute;*/
+/*    top: var(--main-height);*/
+/*    left: 0;*/
+/*    z-index: 1;*/
+/*    background-color: #ffffff;*/
+/*    text-align: center;*/
+/*    width: 100vw;*/
+/*    box-shadow: var(--box-shadow);*/
+/*}*/
 
-nav a {
-    width: 100%;
-    height: var(--main-height);
-    line-height: var(--main-height);
-    display: inline-block;
-    color: #000000;
-    font-size: 140%;
-    border-bottom: #000000 2px solid;
-}
+/*nav a {*/
+/*    width: 100%;*/
+/*    height: var(--main-height);*/
+/*    line-height: var(--main-height);*/
+/*    display: inline-block;*/
+/*    color: #000000;*/
+/*    font-size: 140%;*/
+/*    border-bottom: #000000 2px solid;*/
+/*}*/
 
 main {
-    font-size: 1.5rem;
+    font-size: 120%;
     text-align: center;
-    padding: var(--main-height) 0 10%;
+    padding: var(--main-height) 0 0;
     background: linear-gradient(#41B562, #9CE4B0);
     flex: 1 0 auto;
 }
 
-main > * {
-    margin: 10% auto 0;
-    width: 88%;
+main > *, .side-wrapper > * {
+    margin: 2rem auto 0;
+    width: var(--main-width);
 }
 
-h1 {
+main > *:last-child  {
+    margin-bottom: calc(var(--main-height) / 1.5);
+}
+
+.logged {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.side-wrapper .instruction {
+    margin-bottom: calc(var(--main-height) / 1.5);
+}
+
+.main-block {
+    width: var(--main-width);
+    background: var(--main-block-bg);
+    border-radius: 35px;
+    max-width: 50rem;
+    padding: 1.7rem;
+    font-size: 120%;
+    overflow: scroll;
+    box-shadow: var(--box-shadow);
+}
+
+.folders {
+    align-self: start;
+    justify-self: start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: start !important;
+}
+
+.folders > * {
+    margin-top: 2rem;
+}
+
+.folders-elem {
+    width: var(--main-width);
+    max-width: 400px;
+    height: 135px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.folders-elem h3 {
+    margin: 0;
+}
+
+.folders-elem h3::before {
+    font-family: "Fontawesome", sans-serif;
+    content: "\f015";
+    margin-right: 1rem;
+    font-size: 90%;
+}
+
+.side-wrapper {
+    width: 100%;
+}
+
+.side-wrapper > * {
+    width: var(--main-width);
+}
+
+h1, h2 {
+    font-size: 175%;
     color: #ffffff;
+    height: fit-content;
     display: inline-block;
+    padding-bottom: 0;
 }
 
 .instruction {
-    background: rgba(255, 255, 255, 0.82);
-    border-radius: 35px;
-    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-.instruction figcaption {
-    width: 90%;
-    font-size: 120%;
+.icons-block, .instruction ol, .side-wrapper, .alert {
     margin: 0 auto;
-}
-
-.list-decoration {
-    margin: 0 auto;
-    width: 75%;
-}
-
-.icons-block, .instruction ol {
-    margin: 8% 0 0;
 }
 
 .icons-block {
-    width: 10%;
+    width: 12%;
     float: left;
 }
 
 .instruction ol {
     display: inline-block;
-    width: 90%;
+    width: 80%;
 }
 
 .instruction ol li, .icons-block i {
-    margin-top: 30px;
+    margin-top: 2rem;
     text-align: left;
     font-weight: bold;
 }
 
-button {
-    cursor: pointer;
+.main-block .fa-circle-user {
+    font-size: 10rem;
+    margin-bottom: 1.7rem;
+    color: #41B562;
+}
+
+.icons-block i {
+    margin-top: 1.78rem;
 }
 
 form {
@@ -162,10 +248,14 @@ form {
     flex-direction: column;
     flex-wrap: wrap;
     text-align: start;
-    font-size: 130%;
-    width: 80%;
-    max-width: 35rem;
-    margin-top: 6%;
+}
+
+form div {
+    margin: 0;
+}
+
+form > *, .instruction figcaption {
+    margin-top: 1.7rem;
 }
 
 input, textarea, select {
@@ -181,6 +271,16 @@ input, textarea, select, .enter-button, optgroup {
     padding: 0.6rem;
 }
 
+.fa-eye {
+    font-size: 70%;
+    text-align: right;
+    margin: -3.7rem 0.7rem 0 0;
+}
+
+.login-form button {
+    margin-top: 2.4rem;
+}
+
 input, select {
     width: 100%;
     height: 2.5rem;
@@ -191,6 +291,7 @@ input:focus, textarea:focus {
 }
 
 textarea {
+    height: 12rem;
     width: 100%;
     resize: none;
 }
@@ -201,11 +302,12 @@ textarea {
     padding: 0 2.5rem;
     height: var(--main-height);
     line-height: var(--main-height);
-    font-size: 80%;
+    font-size: 100%;
     border-radius: 2.5rem;
     color: #ffffff;
     background: #000000;
     margin: 0 auto;
+    box-shadow: var(--box-shadow);
 }
 
 a.enter-button {
@@ -222,6 +324,75 @@ footer a {
     font-size: 125%;
 }
 
-/* @media screen and (min-width: 768px) {
+@media screen and (min-width: 540px) {
+    header {
+        padding: 0 1.8rem;
+    }
+    main {
+        font-size: 130%;
+    }
 
-} */
+    .main-block .fa-circle-user {
+        font-size: 11rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    main {
+        font-size: 140%;
+    }
+
+    .main-block .fa-circle-user {
+        font-size: 12rem;
+    }
+
+    .side-wrapper {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 50%;
+    }
+
+    .side-wrapper:first-child {
+        float: left;
+    }
+
+    .folders {
+        width: 100%;
+    }
+
+    .side-wrapper > * {
+        width: 88%;
+    }
+
+    .side-wrapper .main-block {
+        height: 23rem;
+    }
+
+    .side-wrapper .heading{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(var(--main-height) * 1.5);
+        font-size: 170%;
+    }
+
+    .folders-elem {
+        width: calc(var(--main-width) / 2);
+    }
+}
+
+@media screen and (min-width: 1080px) {
+    main {
+        font-size: 150%;
+    }
+
+    .main-block .fa-circle-user {
+        font-size: 13rem;
+    }
+
+    .folders-elem {
+        width: calc(var(--main-width) / 3);
+    }
+}
