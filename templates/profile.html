@@ -79,14 +79,29 @@
       <h2>Мої повідомлення</h2>
       {% for report in reports %}
          <div class="main-block">
-            <h2>{{ report.title }}</h2>
-            <p>{{ report.status }}</p>
-            <p>{{ report.date }}</p>
-            <h6>{{ report.problem_type }}</h6>
-            <h6>{{ report.dormitory }}</h6>
-            <p>{{ report.exact_place }}</p>
-            <p>{{ report.description }}</p>
-         </div>
+            <h2 class="report-title">{{ report.title }}</h2>
+
+            <div  class="information">
+               <div class="time-status message-elem">
+                  <p>{{ report.date }}</p>
+                  <p class="status">{{ report.status }}</p>
+               </div>
+
+               <div class="message-elem">
+                  <p>Гуртожиток №{{ report.dormitory }}</p>
+                  <p>Кімната: {{ report.exact_place }}</p>
+               </div>
+
+               <div class="message-elem">
+                  <p>Тип проблеми: {{ report.problem_type }}</p>
+               </div>
+            </div>
+
+            <div class="description">
+               <p>Опис:</p>
+               <p class="message">{{ report.description }} аппрпрпр врп раа оаопа орвалоав оаврларо олваолаво оаола орваол ваор роваро оваор і</p>
+            </div>
+            </div>
 
          {% if report.contact_emails.all %}
             <button class="show-replies enter-button" data-value="{{ report.id }}" onclick="showReplies(this)">Показати відповіді</button>
