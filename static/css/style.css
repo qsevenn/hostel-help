@@ -110,7 +110,7 @@ main > *:last-child  {
     max-width: 50rem;
     padding: 1.7rem;
     font-size: 120%;
-    overflow: scroll;
+    overflow: hidden;
     box-shadow: var(--box-shadow);
 }
 
