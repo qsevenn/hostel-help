@@ -137,7 +137,7 @@ USE_L10N = False
 DATETIME_FORMAT = 'd.m.Y - H:i'
 USE_TZ = True
 USE_I18N = True
-TIME_ZONE = 'Europe/Kyiv'
+TIME_ZONE = 'Europe/Kiev'
 # LANGUAGE_CODE = 'us_en'
 
 #  email
@@ -147,4 +147,3 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "hostelhelpkpi@gmail.com"
 EMAIL_HOST_PASSWORD = "qeldcudojffxesub"
-# DEFAULT_FROM_EMAIL = 'noreply<hostelhelpkpi@gmail.com>'
