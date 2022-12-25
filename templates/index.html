@@ -2,6 +2,16 @@
 
 {% load static %}
 
+{% block auth_user %}
+    {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+            <a href="{% url 'folders' %}" class="fa-solid fa-circle-user"><span class="fa-sr-only">Profile</span></a>
+        {% else %}
+            <a href="{% url 'profile' %}" class="fa-solid fa-circle-user"><span class="fa-sr-only">Profile</span></a>
+        {% endif %}
+    {% endif %}
+{% endblock auth_user %}
+
 {% block content %}
 <div class="side-wrapper">
         <h1 class="heading">Вирішення побутових проблем жителів студміста КПІ</h1>

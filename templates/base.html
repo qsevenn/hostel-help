@@ -20,7 +20,8 @@
 <body>
     <header>
         <a href="{% url 'index' %}"><p class="site-title">HOSTEL HELP KPI</p></a>
-        <a href="{% url 'profile' %}" class="fa-solid fa-circle-user"><span class="fa-sr-only">Profile</span></a>
+        {% block auth_user %}
+        {% endblock auth_user %}
     </header>
 
     <main>
