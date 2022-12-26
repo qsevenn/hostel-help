@@ -3,18 +3,18 @@
 {% load static %}
 
 {% block content %}
-    <h1>Повідомити про проблему</h1>
-    <form action="" method="POST" class="main-block">
-        {% csrf_token %}
-        {% for field in form %}
-        <div>
-            <p>{{ field.label }}: {{ field }}</p>
+<h1>Повідомити про проблему</h1>
+<form action="" method="POST" class="main-block">
+    {% csrf_token %}
+    {% for field in form %}
+    <div>
+        <p>{{ field.label }}: {{ field }}</p>
 
-            {% for error in field.errors %}
-                <small>{{ error }}</small><br>
-            {% endfor %}
-        </div>
+        {% for error in field.errors %}
+        <small>{{ error }}</small><br>
         {% endfor %}
-        <input type="submit" value="Надіслати" class="enter-button"/>
-    </form>
+    </div>
+    {% endfor %}
+    <input type="submit" value="Надіслати" class="enter-button" />
+</form>
 {% endblock %}

@@ -6,9 +6,11 @@ html, body {
 
 :root {
     --main-height: 3.5rem;
-    --main-block-bg: rgba(255, 255, 255, 0.82);
+    --main-block-black: #252525;
+    --main-block-bg: rgba(255, 255, 255, 0.9);
     --margin-or-padding: 8%;
     --main-width: 88%;
+    --border-radius: 40px;
     --box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px, rgba(0, 0, 0, 0.23) 0 6px 6px;
 }
 
@@ -34,14 +36,14 @@ a {
     color: #000000;
 }
 
-footer a, nav a, .enter-button {
+footer a, nav a, .enter-button, header a {
     text-decoration: none;
 }
 /*general end*/
 
 
 header, footer {
-    background: #000000;
+    background: var(--main-block-black);
     color: #ffffff;
     height: var(--main-height);
     line-height: var(--main-height);
@@ -106,7 +108,7 @@ main > *:last-child  {
 .main-block {
     width: var(--main-width);
     background: var(--main-block-bg);
-    border-radius: 35px;
+    border-radius: var(--border-radius);
     max-width: 50rem;
     padding: 1.7rem;
     font-size: 120%;
@@ -156,7 +158,6 @@ main > *:last-child  {
 }
 
 h1, h2 {
-    font-size: 175%;
     color: #ffffff;
     height: fit-content;
     display: inline-block;
@@ -196,10 +197,6 @@ h1, h2 {
     color: #41B562;
 }
 
-.icons-block i {
-    margin-top: 1.78rem;
-}
-
 form {
     display: flex;
     flex-direction: column;
@@ -228,10 +225,18 @@ input, textarea, select, .enter-button, optgroup {
     padding: 0.6rem;
 }
 
+option {
+    font-family: "Yanone Kaffeesatz", sans-serif;
+}
+
+input, textarea, select {
+   border: solid #111111 2px;
+}
+
 .fa-eye {
     font-size: 70%;
     text-align: right;
-    margin: -3.7rem 0.7rem 0 0;
+    margin: -3.3rem 0.7rem 0 0;
 }
 
 .login-form button {
@@ -262,7 +267,7 @@ textarea {
     font-size: 100%;
     border-radius: 2.5rem;
     color: #ffffff;
-    background: #000000;
+    background: var(--main-block-black);
     margin: 0 auto;
     box-shadow: var(--box-shadow);
 }
@@ -338,6 +343,11 @@ footer a {
     .folders-elem {
         width: calc(var(--main-width) / 2);
     }
+
+    .fa-eye {
+        margin: -3.7rem 0.7rem 0 0;
+    }
+
 }
 
 @media screen and (min-width: 1080px) {

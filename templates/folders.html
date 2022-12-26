@@ -3,13 +3,13 @@
 {% load static %}
 
 {% block content %}
-    <h1>Оберіть гуртожиток, щоб переглянути повідомлення від жителів студмістечка</h1>
-    <div class="folders">
+<h1>Оберіть гуртожиток, щоб переглянути повідомлення від жителів студмістечка</h1>
+<div class="folders">
     {% for dormitory in dormitories %}
-        <div class="main-block folders-elem">
-            <h3>{{dormitory}} гуртожиток</h3>
-            <a href="{% url 'profile' dormitory %}">Переглянути</a>
-        </div>
-    {% endfor %}
+    <div class="main-block folders-elem">
+        <h3>{{dormitory}} гуртожиток</h3>
+        <a href="{% url 'profile' dormitory %}">Переглянути</a>
     </div>
+    {% endfor %}
+</div>
 {% endblock %}

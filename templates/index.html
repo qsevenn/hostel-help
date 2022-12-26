@@ -2,20 +2,10 @@
 
 {% load static %}
 
-{% block auth_user %}
-    {% if user.is_authenticated %}
-        {% if user.is_superuser %}
-            <a href="{% url 'folders' %}" class="fa-solid fa-circle-user"><span class="fa-sr-only">Profile</span></a>
-        {% else %}
-            <a href="{% url 'profile' %}" class="fa-solid fa-circle-user"><span class="fa-sr-only">Profile</span></a>
-        {% endif %}
-    {% endif %}
-{% endblock auth_user %}
-
 {% block content %}
 <div class="side-wrapper">
-        <h1 class="heading">Вирішення побутових проблем жителів студміста КПІ</h1>
-        <figure class="instruction main-block">
+    <h1 class="heading">Вирішення побутових проблем жителів студміста КПІ</h1>
+    <figure class="instruction main-block">
         <figcaption>Повідом адміністрацію про наявну проблему за три кроки:</figcaption>
         <div class="list-decoration">
             <div class="icons-block">
@@ -29,48 +19,48 @@
                 <li>Заповни заявку</li>
             </ol>
         </div>
-        </figure>
-    </div>
+    </figure>
+</div>
 {% if user.is_authenticated %}
-    <div class="alert alert-success side-wrapper" role="alert">
-        <h2 class="heading">Вітаємо, {{ user.username }}!</h2>
-        <div class="logged main-block">
-            <i class="fa-solid fa-circle-user"><span class="fa-sr-only">User</span></i>
-            {% if user.is_superuser %}
-                <a href="{% url 'folders' %}" class="enter-button">До заявок</a>
-            {% else %}
-                <a href="{% url 'report' %}" class="enter-button">Заповнити заявку</a>
-            {% endif %}
-        </div>
-        <p>
-            <a href="{% url 'logout' %}?next=../">Вийти?</a>
+<div class="alert alert-success side-wrapper" role="alert">
+    <h2 class="heading">Вітаємо, {{ user.username }}!</h2>
+    <div class="logged main-block">
+        <i class="fa-solid fa-circle-user"><span class="fa-sr-only">User</span></i>
+        {% if user.is_superuser %}
+        <a href="{% url 'folders' %}" class="enter-button">До заявок</a>
+        {% else %}
+        <a href="{% url 'report' %}" class="enter-button">Заповнити заявку</a>
+        {% endif %}
+    </div>
+    <p>
+        <a href="{% url 'logout' %}?next=../">Вийти?</a>
+    </p>
+</div>
+{% else %}
+<div class="side-wrapper">
+    <h2 class="heading">Вхід</h2>
+
+    <form action="" method="POST" class="main-block login-form">
+        {% csrf_token %}
+        {% for field in form %}
+        <p>{{ field.label }}: {{ field }}</p>
+
+        {% for error in field.errors %}
+        <small>{{ error }}</small><br>
+        {% endfor %}
+
+        {% endfor %}
+        <i class="fa-regular fa-eye" onclick="showPassword()"><span class="fa-sr-only"></span></i>
+        <button type="submit" class="enter-button">Вхід</button>
+    </form>
+    <div class="alert alert-success" role="alert">
+        <p><a href="{% url 'password_reset' %}">Забули пароль?</a></p>
+        <p>Уперше тут?
+            <a href="{% url 'register' %}">Реєстрація</a>
         </p>
     </div>
-{% else %}
-        <div class="side-wrapper">
-        <h2 class="heading">Вхід</h2>
 
-        <form action="" method="POST" class="main-block login-form">
-            {% csrf_token %}
-            {% for field in form %}
-                <p>{{ field.label }}: {{ field }}</p>
-
-                {% for error in field.errors %}
-                    <small>{{ error }}</small><br>
-                {% endfor %}
-
-            {% endfor %}
-            <i class="fa-regular fa-eye" onclick="showPassword()"><span class="fa-sr-only"></span></i>
-            <button type="submit" class="enter-button">Вхід</button>
-        </form>
-        <div class="alert alert-success" role="alert">
-            <p><a href="{% url 'password_reset' %}">Забули пароль?</a></p>
-            <p>Уперше тут?
-                <a href="{% url 'register' %}">Реєстрація</a>
-            </p>
-        </div>
-
-        </div>
+</div>
 
 
 <!--        <p><a href="{% url 'password_reset' %}">Забули пароль?</a></p>-->

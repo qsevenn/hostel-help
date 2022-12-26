@@ -1,24 +1,16 @@
-function openMenu() {
-    document.getElementById('menu').classList.toggle('show');
-}
-
-window.onclick = function (event) {
-    if (!event.target.matches('#menu-button')) {
-        let dropdown = document.getElementById('menu');
-        if (dropdown.classList.contains('show')) {
-            dropdown.classList.remove('show');
+window.onload = function changeColor() {
+    let arr = document.getElementsByClassName('status')
+    for(let report of arr) {
+        switch (report.textContent) {
+            case 'Активна':
+                report.style.color = '#41B562';
+                break;
+            case 'Закрита':
+                report.style.color = '#BD3229';
+                break;
         }
     }
 }
-
-// function showPassword(){
-//     let x = $('input[type="password"]');
-//     if (x.type === "password") {
-//     x.type = "text";
-//   } else {
-//     x.type = "password";
-//   }
-// }
 
 function showPassword() {
   let input = document.getElementById("id_password");

@@ -1,7 +1,7 @@
-
 <!DOCTYPE html>
 {% load static %}
 <html lang="uk">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,17 +11,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'SRS-Logo-TIFF-0-1.ico' %}" rel="icon"/>
+    <link href="{% static 'SRS-Logo-TIFF-0-1.ico' %}" rel="icon" />
     {% block css_files %}
     {% endblock css_files %}
     <script src="{% static 'js/script.js' %}"></script>
     <script src="https://kit.fontawesome.com/72cdf14cdd.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header>
-        <a href="{% url 'index' %}"><p class="site-title">HOSTEL HELP KPI</p></a>
+        <a href="{% url 'index' %}">
+            <p class="site-title">HOSTEL HELP KPI</p>
+        </a>
         {% block auth_user %}
-        {% endblock auth_user %}
+{% if user.is_authenticated %}
+{% if user.is_superuser %}
+<a href="{% url 'folders' %}" class="fa-solid fa-circle-user"><span class="fa-sr-only">Profile</span></a>
+{% else %}
+<a href="{% url 'profile' %}" class="fa-solid fa-circle-user"><span class="fa-sr-only">Profile</span></a>
+{% endif %}
+{% endif %}
+{% endblock auth_user %}
     </header>
 
     <main>

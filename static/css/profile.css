@@ -1,74 +1,64 @@
 /* для зручності */
-div.report{
-    background-color: rgba(156, 228, 176, 0.9);
+div.report {
 	padding-bottom: 10px;
+    width: 100%;
 }
 
-.report-content{
-    background-color: rgba(255, 255, 255, 0.9);
-
-}
-.report-col {
-	display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: flex-start;
-	padding: 20px;
-}
-.rep-description {
-	border: 1px solid #111111;
-    padding: 5px;
-    border-radius: 10px;
-	text-align: justify;
-}
-.report-col-first{
-	width: 30%;
-	text-align: left;
-}
-.report-col-second{
-	width: 70%;
-}
-.report-col-second h2{
-	color: black;
-	margin: 0;
-
-}
-.rep-data-status {
-	display: flex;
-}
-.status{
-	padding-left: 20px;
-}
-.report-col-btn{
-	display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+.report-buttons {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
-    align-items: center;
-	padding-bottom: 20px;
-}
-.report-col-btn .enter-button {
-	margin: 0;
 }
 
+.report-buttons a, .report-buttons button {
+    margin: 0.7rem !important;
+}
 
 #report-answer {
     display: none;
+    text-align: center;
     position: fixed;
     left: 50%;
     top: 5%;
     transform: translate(-50%, 5%);
     z-index: 1000;
-	background-color: darkcyan;
+	background-color: #ffffff;
+    max-width: 60rem;
     padding: 40px;
+    color: #000000;
 	border-radius: 20px;
+    font-size: 120%;
 }
-.report-answer__submit{
-	width: 200px;
-    background-color: black;
-    color: #fff;
+
+#report-answer p {
+    margin: 1rem;
+    text-align: left;
 }
+
+#report-answer .cancel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    margin: 0;
+    border-radius: 100%;
+    font-size: 120%;
+    border: none;
+    background: var(--main-block-black);
+    color: #ffffff;
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    padding: 0;
+}
+
+.cancel:before {
+    content: "\f00d";
+    font-family: "Fontawesome", sans-serif;
+}
+
+#report-answer .enter-button {
+}
+
 .main-block {
     margin: 4rem auto 0;
     display: flex;
@@ -89,17 +79,23 @@ div.report{
     margin: 0;
 }
 
+.description p:first-of-type {
+    margin-bottom: 0;
+}
+
 .message-elem {
     margin: 1rem auto 0;
 }
 
 .message {
-    border-radius: 0.5rem;
+    border: #111111 2px solid;
+    border-radius: 30px;
     overflow: auto;
     background: #ffffff;
-    padding: 0.6rem;
+    padding: 0.9rem;
     width: 100%;
     min-height: 100px;
+    margin: 0;
 }
 
 .information {
@@ -114,8 +110,8 @@ div.report{
     width: 100%;
 }
 
-.message-elem > *:first-child {
-    margin-right: 1.5rem;
+.message-elem {
+    justify-content: space-between;
 }
 
 .time-status {
@@ -128,6 +124,29 @@ div.report{
 
 .all-replies {
     display:none;
+    background: rgba(37, 37, 37, 0.59);
+    border-radius: 35px;
+    color: #ffffff;
+    width: var(--main-width);
+    max-width: 50rem;
+    padding: 1rem;
+}
+
+.report > * {
+    margin: 1rem auto;
+    max-width: 60rem;
+}
+
+.all-replies h3 {
+    margin-bottom: 0.2rem;
+}
+
+.reply {
+    display: flex;
+}
+
+.reply p {
+    margin: 0.7rem 1.7rem;
 }
 
 .show-replies {
@@ -157,9 +176,19 @@ ul.pagination {
     margin-top: 1rem;
 }
 
+a.enter-button {
+    min-width: unset;
+    font-size: 120%;
+    padding: 0.17rem 1.8rem 0;
+}
+
 @media screen and (min-width: 504px) {
     .message-elem > *:first-child {
         margin-right: 3rem;
+    }
+
+    .message-elem {
+        justify-content: left;
     }
 }
 
@@ -169,8 +198,13 @@ ul.pagination {
         justify-content: space-evenly;
     }
 
+    .report-buttons a, .report-buttons button {
+        margin: 0.7rem 0 !important;
+    }
+
     .message, .information {
-        height: 200px;
+        height: 250px;
+        min-height: fit-content;
     }
 
     .message-elem > *:first-child {
@@ -180,29 +214,4 @@ ul.pagination {
     .information > * {
         justify-content: space-between;
     }
-}
-@media (max-width: 767px){
-	.report-col {
-		flex-direction: column;
-	}
-	.report-col-first {
-		width: 100%;
-		text-align: left;
-	}
-	.report-col-second {
-		width: 100%;
-	}
-	.report-col-btn {
-		display: flex;
-		flex-direction: column;
-		flex-wrap: nowrap;
-		align-items: center;
-		padding-bottom: 20px;
-	}
-	.report-col-btn a, .report-col-btn form, .report-col-btn button{
-		padding-bottom: 10px;
-	}
-	.report-col-second h2{
-		padding-top: 15px;
-	}
 }
