@@ -42,10 +42,10 @@
          <a onclick="return confirm('Ви впевнені, що бажаєте видалити запис?')"
             href="{% url 'delete_report' dormitory report.id %}" class="enter-button"><i
                class="fa-solid fa-trash-can"><span class=""></span></i></a>
-         <a href="https://t.me/share/url?url=http://127.0.0.1:8000/&text={{ report.date }}%0A
-	                            {{ report.email }}%0A{{ report.title }}%0AТип: {{ report.problem_type }}%0AГуртожиток:
-	                            {{ report.dormitory }}%0AКонкретне місце: {{report.exact_place }}%0A
-	                            Опис: {{ report.description }}" target="_blank" class="enter-button">
+         <a href="https://t.me/share/url?url=anastasiasavchyn.pythonanywhere.com/&text={{ report.date }}%0A{{ report.email }}
+                  %0A{{ report.title }}%0AТип: {{ report.problem_type }}%0AГуртожиток:{{ report.dormitory }}
+                  %0AКонкретне місце: {{report.exact_place }}%0AОпис: {{ report.description }}" 
+            target="_blank" class="enter-button">
             <i class="fa-brands fa-telegram"><span class="fa-sr-only">Поширити в Telegram</span></i></a>
          {% if report.status == "Неактивна" or report.status == "Активна" %}
          <form action="{% url 'change_status' dormitory report.id %}?next={{ request.path|urlencode }}#{{ report.id }}"
