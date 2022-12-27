@@ -14,7 +14,6 @@ class UserRegistrationForm(UserCreationForm):
     password2 = forms.CharField(label='Підтвердження паролю', strip=False, widget=forms.PasswordInput)
     error_messages = {
         'password_mismatch': 'Паролі не співпадають.'
-
     }
 
     class Meta:
@@ -58,24 +57,10 @@ class CustomAuthenticationForm(AuthenticationForm):
         'invalid_password': 'Невірно введений пароль'
     }
 
-    # def clean_username(self):
-    #     data = self.cleaned_data['username']
-    #     user_model = get_user_model()
-    #     if not user_model.objects.filter(username=data).exists():
-    #         raise ValidationError("Невірно введене ім'я користувача.")
-    #
-    #     # Always return a value to use as the new cleaned data, even if
-    #     # this method didn't change it.
-    #     return data
-
 
 class PasswordResetForm(PasswordResetForm):
     email = forms.EmailField(required=True, label='Електронна пошта')
-    # password = forms.CharField(label='Пароль', widget=forms.PasswordInput)
-    # password2 = forms.CharField(label='Підтвердження паролю', strip=False, widget=forms.PasswordInput)
-    # error_messages = {
-    #     'password_mismatch': 'Паролі не співпадають.'
-    # }
+
 
     def clean(self):
         email = self.cleaned_data.get('email')
@@ -87,12 +72,6 @@ class PasswordResetForm(PasswordResetForm):
 class SetPasswordResetForm(SetPasswordForm):
     new_password1 = forms.CharField(
         label='Пароль',
-        # help_text="<ul class='errorlist text-muted'>
-        # <li>Ваш пароль надто простий</li>
-        # <li>Your password must contain at least 8 characters.</li>
-        # <li>Your password can 't be a commonly used password.</li>
-        # <li>Your password can 't be entirely numeric.<li>
-        # </ul>",
         help_text=False,
         max_length=100,
         required=True,
@@ -158,7 +137,6 @@ class ContactForm(forms.ModelForm):
         model = Contact
         fields = ['message']
         labels = {'message': "Введіть своє повідомлення"}
-        # ordering = ['date']
 
     def clean(self):
         message = self.cleaned_data.get('message')

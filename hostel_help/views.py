@@ -38,7 +38,7 @@ def register(request):
             user.save()
 
             current_site = get_current_site(request)  
-            mail_subject = 'Посилання для активації акаунту було надіслано на Ваш email.' 
+            mail_subject = 'Посилання для активації акаунта було надіслано на Ваш email.'
 
             message = render_to_string('acc_active_email.html', {  
                 'user': user,  
@@ -52,10 +52,8 @@ def register(request):
                 mail_subject, message, to=[to_email]  
             )  
             email.send()  
-            return HttpResponse('Будь ласка підтвердіть вашу електронну адресу, щоб завершити реєстрацію.')  
+            return HttpResponse('Будь ласка, підтвердіть вашу електронну адресу, щоб завершити реєстрацію.')
 
-            # messages.success(request, f'Your account has been created. You can log in now!')
-            # return redirect('login')
     else:
         form = UserRegistrationForm()
 
@@ -71,7 +69,6 @@ def reset_password(request):
             associated_users = User.objects.filter(Q(email=data))
             if associated_users.exists():
                 for user in associated_users:
-                    # user.reset_password = True
                     user.is_active = False
                     user.save()
 
@@ -160,18 +157,10 @@ def activate(request, uidb64, token):
         user = None  
     if user is not None and account_activation_token.check_token(user, token):  
         user.is_active = True  
-        user.save()  
-        return HttpResponse('Дякуємо за підтвердження вашої електронної адреси. Ви тепер можете входити в акаунт.')  
+        user.save()
+        return redirect('index')
     else:  
-        return HttpResponse('Посилання не активне')  
-
-
-def login(request):
-    # print(request.user.is_authenticated)
-    # if request.user.is_authenticated:
-    #     return render(request, 'profile.html', {'user': request.user})
-    # else:
-    return render(request, 'login.html')
+        return HttpResponse('Посилання неактивне')
 
 
 def folders(request):
@@ -211,12 +200,8 @@ def profile(request, dormitory=None):
                 send_mail(subject, message, email_from, recipient_list, fail_silently=False)
                 messages.success(request, f'Your message has been sent.')
                 return redirect(reverse('profile', args=[dormitory]))
-        # if request.user.is_authenticated:
-        #     reports = Report.objects.filter(email=request.user.email).order_by('-date')
-        #     replies = Contact.objects.filter(email=request.user.email)
     else:
         if request.user.is_superuser:
-            # reports = Report.objects.filter(dormitory=dormitory).order_by('-date')
             reports = Report.objects.filter(dormitory=dormitory).order_by('-date')
             replies = Contact.objects.prefetch_related('report_id').filter(report_id__in=reports.values('id'))
             page = request.GET.get('page', 1)

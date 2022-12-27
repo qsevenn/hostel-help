@@ -14,10 +14,16 @@ window.onload = function changeColor() {
 
 function showPassword() {
   let input = document.getElementById("id_password");
+  let button = document.getElementsByClassName("password-button")[0];
   if (input.type === "password") {
     input.type = "text";
-  } else {
+    button.classList.remove("fa-eye-slash");
+    button.classList.add("fa-eye");
+  }
+  else {
     input.type = "password";
+    button.classList.remove("fa-eye");
+    button.classList.add("fa-eye-slash");
   }
 }
 

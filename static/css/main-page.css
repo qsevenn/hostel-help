@@ -1,0 +1,145 @@
+.side-wrapper > * {
+    margin: 2rem auto 0;
+    width: var(--main-width);
+}
+
+.logged {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.side-wrapper .instruction {
+    margin-bottom: calc(var(--main-height) / 2);
+}
+
+.side-wrapper .alert p, .side-wrapper > p {
+    margin: 1rem auto 0;
+}
+
+.side-wrapper h2 {
+    font-size: 200%;
+}
+
+.instruction {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.icons-block, .instruction ol, .side-wrapper, .alert {
+    margin: 0 auto;
+}
+
+.icons-block {
+    width: 12%;
+    float: left;
+}
+
+.instruction ol {
+    display: inline-block;
+    width: 80%;
+}
+
+.instruction ol li, .icons-block i {
+    margin-top: 2rem;
+    text-align: left;
+    font-weight: bold;
+}
+
+.main-block .fa-circle-user {
+    font-size: 10rem;
+    margin-bottom: 1.7rem;
+    color: #41B562;
+}
+
+.password-button {
+    align-self: end;
+    text-align: center;
+    vertical-align: middle;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    font-size: 18px;
+    border: none;
+    background: none;
+    margin: -3.925rem 0 0 !important;
+}
+
+.login-form button {
+    margin-top: 2.4rem;
+}
+
+
+@media screen and (min-width: 540px) {
+    .password-button {
+        margin-top: -4.05rem !important;
+    }
+
+    .main-block .fa-circle-user {
+        font-size: 11rem;
+    }
+}
+
+
+@media screen and (min-width: 540px) {
+    .password-button {
+        margin-top: -4.1rem !important;
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    .main-block .fa-circle-user {
+        font-size: 12rem;
+    }
+
+    .side-wrapper {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 50%;
+    }
+
+    .side-wrapper:first-child {
+        float: left;
+    }
+
+    .side-wrapper > * {
+        width: 88%;
+    }
+
+    .side-wrapper .main-block {
+        height: 23rem;
+    }
+
+    .side-wrapper .heading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(var(--main-height) * 1.5);
+        font-size: 170%;
+    }
+
+    .password-button {
+        margin-top: -4.2rem !important;
+    }
+}
+
+
+@media screen and (min-width: 1080px) {
+    .main-block .fa-circle-user {
+        font-size: 13rem;
+        margin-bottom: 0;
+    }
+
+    .password-button {
+        margin-top: -4.3rem !important;
+    }
+
+    .side-wrapper .enter-button {
+        margin-top: 2.05rem;
+    }
+}

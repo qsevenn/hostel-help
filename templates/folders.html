@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% block css_files %}
+<link href="{% static '/css/folders.css' %}" rel="stylesheet" type="text/css" />
+{% endblock css_files %}
 
 {% block content %}
-<h1>Оберіть гуртожиток, щоб переглянути повідомлення від жителів студмістечка</h1>
+<h1>Вибір гуртожитка для перегляду заявок</h1>
 <div class="folders">
     {% for dormitory in dormitories %}
     <div class="main-block folders-elem">

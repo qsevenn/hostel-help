@@ -38,6 +38,7 @@
             <p>Опис:</p>
             <p class="message">{{ report.description }}</p>
          </div>
+
          <div class="report-buttons">
          <a onclick="return confirm('Ви впевнені, що бажаєте видалити запис?')"
             href="{% url 'delete_report' dormitory report.id %}" class="enter-button"><i
@@ -62,15 +63,6 @@
          {% if report.status == "Активна" %}
          <button class="reply-button enter-button" data-value="{{ report.id }}"
             onclick="showAnswerPopup(this)">Відповісти</button>
-         <!-- <form action="" method="POST">
-							{% csrf_token %}
-							{% for field in form %}
-							   {{ field.label }}
-							   {{ field }}
-							{% endfor %}
-							<input type="hidden" name="report_id" value="{{ report.id }}">
-							<input type="submit" value="Надіслати"/>
-						 </form> -->
          {% endif %}
       </div>
    </div>
@@ -131,7 +123,7 @@
 
    <div class="description">
       <p>Опис:</p>
-      <p class="message">{{ report.description }}</p>
+      <p class="message">{{ report.description }}ааап оаморав ровроваро ровароваро вар опва орва првао ва увро орпва оваро овао вро ова овао ва ово ааап оаморав ровроваро ровароваро вар опва орва првао ва увро орпва оваро овао вро ова овао ва ово ааап оаморав ровроваро ровароваро вар опва орва првао ва увро орпва оваро овао вро ова овао ва ово ааап оаморав ровроваро ровароваро вар опва орва првао ва увро орпва оваро овао вро ова овао ва ово </p>
    </div>
 </div>
 
@@ -151,18 +143,6 @@
    </div>
    {% endfor %}
 </div>
-<!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
-
-<!-- {% if report.contact_emails.all %}
-            <button>Показати відповіді</button>
-         {% endif %} -->
-<!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
-<!-- {% for reply in report.contact_emails.all %}
-               <div class="">
-               <p class="">{{ reply.date }}</p>
-               <p>{{ reply.message }}</p>
-            </div>
-         {% endfor %} -->
 <!-- це має бути сховане, і якщо тисне що хоче переглянути наявні реплаї, тоді показуєм -->
 {% endfor %}
 {% endif %}

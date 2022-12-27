@@ -12,9 +12,7 @@ class Report(models.Model):
 
     email = models.EmailField(max_length=80, default=False)
     title = models.CharField(max_length=70)
-    # problem_type =  models.CharField(max_length=70)
     problem_type = models.CharField(choices=PROBLEM_CHOICES, max_length=70, default="Не визначено")
-    # dormitory = models.CharField(max_length=30)
     dormitory = models.IntegerField(choices=DORMITORIES_CHOICES)
     exact_place = models.CharField(max_length=100)
     description = models.TextField()
@@ -26,7 +24,6 @@ class Report(models.Model):
 
 
 class Contact(models.Model):
-    # name = models.CharField(max_length=250)
     report_id = models.ForeignKey(Report, on_delete=models.CASCADE, related_name="contact_emails")
     date_report = models.DateTimeField()
     date = models.DateTimeField(auto_now_add=True)

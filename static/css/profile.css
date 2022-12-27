@@ -1,6 +1,5 @@
-/* для зручності */
 div.report {
-	padding-bottom: 10px;
+	padding-bottom: 1rem;
     width: 100%;
 }
 
@@ -54,9 +53,6 @@ div.report {
 .cancel:before {
     content: "\f00d";
     font-family: "Fontawesome", sans-serif;
-}
-
-#report-answer .enter-button {
 }
 
 .main-block {
