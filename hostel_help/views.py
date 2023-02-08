@@ -17,6 +17,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string  
 from .token.token import account_activation_token, password_reset_token
 from django.db.models.query_utils import Q
+from .models import Report
 
 
 class CustomLoginView(LoginView):
@@ -166,12 +167,10 @@ def activate(request, uidb64, token):
 def folders(request):
     if request.method == 'GET':
         if request.user.is_superuser:
-            dormitories_available = list(Report.objects.order_by().values_list('dormitory').distinct())
+            dormitories_available = Report.DORMITORIES_CHOICES
             dormitories = []
             for d in dormitories_available:
-                for val in d:
-                    dormitories.append(val)
-            print(dormitories)
+                dormitories.append(d[0])
             return render(request, 'folders.html', {'dormitories': dormitories})
         else:
             return HttpResponseNotFound("Сторінку не знайдено.")
