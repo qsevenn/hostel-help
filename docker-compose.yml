@@ -1,0 +1,44 @@
+version: '3.7'
+
+networks:
+  web:
+    external: true
+
+volumes:
+  mysql_data:
+    external: false
+
+services:
+  app:
+    container_name: ${APP_NAME}
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: always
+    networks:
+      - web
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.${APP_NAME}.rule=Host(`${APP_DOMAIN}`)
+      - traefik.http.routers.${APP_NAME}.tls=true
+      - traefik.http.routers.${APP_NAME}.tls.certresolver=lets-encrypt
+    depends_on:
+      - db
+
+  db:
+    container_name: db_${APP_NAME}
+    image: mysql:5.7
+    hostname: ${DB_HOST}
+    restart: always
+    networks:
+      - web
+    labels:
+      - traefik.enable=false
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    command: "mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"

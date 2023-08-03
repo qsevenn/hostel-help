@@ -45,3 +45,4 @@ typing_extensions==4.3.0
 validate-email-address==1
 yarl==1.8.1
 zope.interface==5.5.1
+mysqlclient
