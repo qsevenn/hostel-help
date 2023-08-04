@@ -22,7 +22,7 @@ services:
       - traefik.http.routers.${APP_NAME}.tls=true
       - traefik.http.routers.${APP_NAME}.tls.certresolver=lets-encrypt
     depends_on:
-      - db
+      - mysql
 
   mysql:
     container_name: db_${APP_NAME}
