@@ -24,7 +24,7 @@ services:
     depends_on:
       - db
 
-  db:
+  mysql:
     container_name: db_${APP_NAME}
     image: mysql:5.7
     hostname: ${DB_HOST}
